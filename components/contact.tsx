@@ -3,7 +3,8 @@
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
-import { Phone, Mail, MapPin, Clock } from 'lucide-react'
+import { Phone, Mail, MapPin, Clock, Globe, Instagram, MessageCircle, Facebook, Twitter, Linkedin, Youtube, Music2 } from 'lucide-react'
+import Map from '@/components/map'
 
 type View = 'home' | 'services' | 'about' | 'contact'
 
@@ -40,23 +41,87 @@ export default function Contact({ onNavigate }: ContactProps) {
   }
 
   const contactInfo = [
-    { icon: Phone, label: 'Phone', value: '+20 64 3506 250', href: 'tel:+201643506250' },
-    { icon: Mail, label: 'Email', value: 'info@express.com', href: 'mailto:info@express.com' },
     { 
       icon: MapPin, 
-      label: 'Address', 
-      value: 'Damietta Port, sector1, office2, Egypt', 
+      label: 'Location', 
+      value: 'DAMIETTA PORT, EGYPT', 
       href: 'https://maps.app.goo.gl/pFRY1wxe52LzyPgE8',
       target: '_blank',
       rel: 'noopener noreferrer'
     },
-    { icon: Clock, label: 'Operations', value: '24/7 Available' },
-  ]
-
+    { 
+      icon: Mail, 
+      label: 'Email', 
+      value: 'INFO@EXPRESSSERVICESS.COM', 
+      href: 'mailto:INFO@EXPRESSSERVICESS.COM' 
+    },
+    { 
+      icon: Phone, 
+      label: 'Phone', 
+      value: '01016218082', 
+      href: 'tel:01016218082' 
+    },
+    { 
+      icon: MessageCircle, 
+      label: 'WhatsApp', 
+      value: '(+20) 01097178002', 
+      href: 'https://wa.me/2001097178002',
+      target: '_blank',
+      rel: 'noopener noreferrer'
+    },
+    { 
+      icon: 'globe', 
+      label: 'Website', 
+      value: 'WWW.EXPRESSSERVICESS.COM', 
+      href: 'https://www.expressservicess.com',
+      target: '_blank',
+      rel: 'noopener noreferrer'
+    },
+    { 
+      icon: Facebook, 
+      label: 'Facebook', 
+      value: 'Express Inc', 
+      href: 'https://web.facebook.com/profile.php?id=61575205654731',
+      target: '_blank',
+      rel: 'noopener noreferrer'
+    },
+    { 
+      icon: Twitter, 
+      label: 'X (Twitter)', 
+      value: '@exp08011', 
+      href: 'https://x.com/exp08011',
+      target: '_blank',
+      rel: 'noopener noreferrer'
+    },
+    { 
+      icon: Instagram, 
+      label: 'Instagram', 
+      value: '@express__inc', 
+      href: 'https://www.instagram.com/express__inc/',
+      target: '_blank',
+      rel: 'noopener noreferrer'
+    },
+    { 
+      icon: Youtube, 
+      label: 'YouTube', 
+      value: 'Express Inc', 
+      href: 'https://www.youtube.com/@expressinc-q7g',
+      target: '_blank',
+      rel: 'noopener noreferrer'
+    },
+    { 
+      icon: Music2, 
+      label: 'TikTok', 
+      value: '@express_inc', 
+      href: 'https://www.tiktok.com/@express_inc',
+      target: '_blank',
+      rel: 'noopener noreferrer'
+    }
+  ];
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30" id="contact">
+    <section className="py-12 px-4 sm:px-6 lg:px-8 bg-muted/30" id="contact">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold text-balance mb-4">
             Contact Us
           </h2>
@@ -74,7 +139,13 @@ export default function Contact({ onNavigate }: ContactProps) {
                 const Icon = info.icon
                 return (
                   <div key={index} className="flex gap-4">
-                    <Icon className="w-6 h-6 text-accent flex-shrink-0 mt-1" />
+                    {typeof info.icon === 'string' ? (
+                      info.icon === 'globe' ? <Globe className="w-6 h-6 text-accent flex-shrink-0 mt-1" /> :
+                      info.icon === 'instagram' ? <Instagram className="w-6 h-6 text-accent flex-shrink-0 mt-1" /> :
+                      null
+                    ) : (
+                      <Icon className="w-6 h-6 text-accent flex-shrink-0 mt-1" />
+                    )}
                     <div>
                       <p className="font-semibold text-foreground">{info.label}</p>
                       {info.href ? (
@@ -198,6 +269,14 @@ export default function Contact({ onNavigate }: ContactProps) {
                 </form>
               )}
             </Card>
+          </div>
+        </div>
+        
+        {/* Map Section */}
+        <div className="mt-16">
+          <h2 className="text-3xl font-bold text-center mb-6">Our Location</h2>
+          <div className="max-w-3xl mx-auto">
+            <Map />
           </div>
         </div>
       </div>

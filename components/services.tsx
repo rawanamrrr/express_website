@@ -1,43 +1,43 @@
 'use client'
 
 import { Card } from '@/components/ui/card'
-import { Ship, Package, Wrench, Anchor, Fuel, Users } from 'lucide-react'
+import { Truck, Wrench, AlertTriangle, Droplets } from 'lucide-react'
+import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Services() {
   const services = [
     {
-      icon: Ship,
-      title: 'Vessel Provisioning',
-      description: 'Complete food, beverage, and consumables supply for all vessel types and crew sizes.',
-      features: ['Fresh & frozen provisions', 'Beverage supply', 'Crew comfort items', 'Customized menus']
-    },
-    {
-      icon: Package,
-      title: 'Cargo Handling',
-      description: 'Efficient loading, unloading, and storage solutions with modern equipment.',
-      features: ['Heavy lift operations', 'Container handling', 'Warehousing', 'Cargo tracking']
+      icon: Truck,
+      title: 'LOGISTICAL SUPPORT SERVICES',
+      description: 'WE HANDLE ALL THE LOGISTICS YOUR SHIP NEEDS AT THE PORT OR OUT AT SEA.',
+      features: ['Port logistics', 'Cargo handling', 'Documentation', 'Customs clearance'],
+      image: '/maritime-port-operations-damietta.jpg',
+      alt: 'Port operations and logistics services'
     },
     {
       icon: Wrench,
-      title: 'Marine Maintenance',
-      description: 'Professional maintenance and repair services for vessel equipment and systems.',
-      features: ['Engine maintenance', 'Hull repairs', 'Electrical systems', 'Emergency repairs']
+      title: 'SPARE PARTS & TECHNICAL ITEMS',
+      description: 'WE\'VE GOT WHAT YOUR VESSEL NEEDS TO STAY RUNNING SMOOTHLY.',
+      features: ['Engine parts', 'Technical equipment', 'Maintenance supplies', 'Emergency spares'],
+      image: '/cargo-ship-in-damietta-port.jpg',
+      alt: 'Ship maintenance and technical parts'
     },
     {
-      icon: Anchor,
-      title: 'Port Operations',
-      description: 'Complete port coordination including documentation, permits, and clearances.',
-      features: ['Port clearance', 'Documentation', 'Customs brokerage', 'Agency services']
+      icon: AlertTriangle,
+      title: 'MARITIME EMERGENCY SERVICES',
+      description: 'WHEN SOMETHING UNEXPECTED HAPPENS, WE\'RE READY TO STEP IN FAST.',
+      features: ['24/7 response', 'Emergency repairs', 'Technical assistance', 'Rapid deployment'],
+      image: '/placeholder.jpg',
+      alt: 'Emergency response services at sea'
     },
     {
-      icon: Fuel,
-      title: 'Bunker Supply',
-      description: 'High-quality fuel supply with competitive pricing and reliable delivery.'
-    },
-    {
-      icon: Users,
-      title: 'Crew Support',
-      description: 'Crew transfer, accommodation, and welfare services during port stays.'
+      icon: Droplets,
+      title: 'FOOD & FRESH WATER',
+      description: 'WE DELIVER QUALITY FOOD SUPPLIES AND CLEAN DRINKING WATER TO KEEP YOUR CREW WELL-STOCKED AND READY.',
+      features: ['Fresh provisions', 'Beverages', 'Dry stores', 'Potable water'],
+      image: '/placeholder.jpg',
+      alt: 'Food and water supply for vessels'
     }
   ]
 
@@ -50,23 +50,32 @@ export default function Services() {
           </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
             <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              Premium Maritime Services
+              Our Services
             </span>
           </h2>
           <p className="text-xl text-foreground/70 max-w-4xl mx-auto leading-relaxed">
-            Comprehensive maritime solutions tailored to meet the unique needs of your vessel operations in Damietta Port. Experience excellence in every service we provide.
+            WE PROVIDE ALL THE ESSENTIALS SHIPS NEED QUICKLY, RELIABLY, AND WHENEVER THEY NEED IT.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 gap-8">
           {services.map((service, index) => (
-            <Card key={index} className="group relative overflow-hidden border-0 bg-gradient-to-br from-card to-card/50 backdrop-blur-sm shadow-luxury hover:shadow-luxury-lg transition-all duration-500 hover:scale-[1.02]">
-              {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <Card key={index} className="group relative overflow-hidden border-0 bg-gradient-to-br from-card to-card/50 backdrop-blur-sm shadow-luxury hover:shadow-luxury-lg transition-all duration-500 hover:scale-[1.02] flex flex-col">
+              {/* Image */}
+              <div className="h-48 relative overflow-hidden">
+                <Image
+                  src={service.image}
+                  alt={service.alt}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+              </div>
               
-              <div className="relative p-8">
+              <div className="relative p-8 flex-1 flex flex-col">
                 {/* Icon */}
-                <div className="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-luxury">
+                <div className="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-luxury -mt-10 z-10 border-4 border-background">
                   <service.icon className="w-8 h-8 text-primary-foreground" />
                 </div>
                 
@@ -80,7 +89,7 @@ export default function Services() {
                 
                 {/* Features */}
                 {service.features && (
-                  <ul className="space-y-2">
+                  <ul className="space-y-2 mt-auto">
                     {service.features.map((feature, idx) => (
                       <li key={idx} className="flex items-center gap-2 text-sm text-foreground/60">
                         <div className="w-1.5 h-1.5 bg-accent rounded-full" />
@@ -102,9 +111,12 @@ export default function Services() {
           <p className="mb-6 max-w-2xl mx-auto">
             We customize solutions for unique maritime requirements. Contact our team to discuss your specific needs.
           </p>
-          <button className="bg-accent text-accent-foreground px-8 py-3 rounded font-semibold hover:bg-accent/90 transition-colors">
+          <Link 
+            href="/contact"
+            className="inline-block bg-accent text-accent-foreground px-8 py-3 rounded font-semibold hover:bg-accent/90 transition-colors"
+          >
             Contact Us
-          </button>
+          </Link>
         </div>
       </div>
     </section>

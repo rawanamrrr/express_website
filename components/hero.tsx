@@ -5,9 +5,10 @@ import { Ship } from 'lucide-react'
 
 export default function Hero() {
   const scrollToSection = (id: string) => {
-    const element = document.getElementById(id)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
+    if (id === 'contact') {
+      window.location.href = '/contact';
+    } else if (id === 'services') {
+      window.location.href = '/services';
     }
   }
 
@@ -23,7 +24,7 @@ export default function Hero() {
       }}
     >
       {/* Dark overlay for text readability */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/80" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/80 pointer-events-none" />
 
       <div className="max-w-7xl w-full mx-auto relative z-10">
         <div className="flex flex-col items-center justify-center">
@@ -48,7 +49,7 @@ export default function Hero() {
                   console.log('Button clicked!')
                   scrollToSection('services')
                 }}
-                className="px-8 py-3 text-base font-semibold text-white rounded-lg transition-colors duration-300 shadow-lg hover:shadow-xl cursor-pointer pointer-events-auto"
+                className="px-8 py-3 text-base font-semibold text-white rounded-lg transition-colors duration-300 shadow-lg hover:shadow-xl cursor-pointer pointer-events-auto relative z-10"
                 style={{ backgroundColor: '#f58d13' }}
                 onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#e67e00'}
                 onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#f58d13'}
@@ -59,9 +60,9 @@ export default function Hero() {
                 onClick={() => scrollToSection('contact')}
                 size="lg"
                 variant="outline"
-                className="border-2 border-white/30 bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 hover:border-white/50"
+                className="border-2 border-white/30 bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 hover:border-white/50 pointer-events-auto relative z-10"
               >
-                Get a Quote
+                Contact Us
               </Button>
             </div>
           </div>

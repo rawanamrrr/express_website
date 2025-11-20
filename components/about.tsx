@@ -1,15 +1,36 @@
 'use client'
 
 import { Card } from '@/components/ui/card'
-import { CheckCircle, Award, Globe, Target } from 'lucide-react'
+import { CheckCircle, Award, Shield, Clock, Zap, Handshake } from 'lucide-react'
 
 export default function About() {
   const values = [
-    { icon: Award, title: 'Excellence', description: 'Highest standards in maritime services and customer satisfaction.' },
-    { icon: Globe, title: 'Reliability', description: '15+ years of proven track record serving the maritime industry.' },
-    { icon: Target, title: 'Efficiency', description: 'Streamlined operations ensuring timely and cost-effective solutions.' },
-    { icon: CheckCircle, title: 'Safety', description: 'Strict compliance with international maritime safety regulations.' },
-  ]
+    { 
+      icon: Award, 
+      title: 'Quality', 
+      description: 'We consistently strive to provide products and services of the highest quality, ensuring customer satisfaction and the efficiency of maritime operations.' 
+    },
+    { 
+      icon: Shield, 
+      title: 'Safety', 
+      description: 'Safety is our top priority, whether in the supply of materials or the execution of operations, in accordance with global maritime standards.' 
+    },
+    { 
+      icon: CheckCircle, 
+      title: 'Commitment', 
+      description: 'We are dedicated to meeting delivery deadlines and honoring all contractual obligations.' 
+    },
+    { 
+      icon: Zap, 
+      title: 'Flexibility and Innovation', 
+      description: 'We respond quickly and flexibly to market changes and our clients\' needs, continuously adopting the latest technologies in the maritime sector to deliver smart service solutions.' 
+    },
+    { 
+      icon: Handshake, 
+      title: 'Transparency and Integrity', 
+      description: 'We believe that trust is built on clarity, and we uphold transparency in our dealings to foster long-term relationships with our partners.' 
+    }
+  ];
 
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8" id="about">
@@ -17,18 +38,15 @@ export default function About() {
         {/* Main About */}
         <div className="grid md:grid-cols-2 gap-12 mb-20 items-center">
           <div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-balance">
-              About Express
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-balance uppercase">
+              About Us
             </h2>
-            <p className="text-lg text-foreground/70 mb-4 leading-relaxed">
-              Express has been a trusted partner in maritime logistics since 2009. Operating from the strategic location of Damietta Port, we serve major international shipping lines and vessel operators.
-            </p>
-            <p className="text-lg text-foreground/70 mb-4 leading-relaxed">
-              Our comprehensive service portfolio, combined with our experienced team and modern infrastructure, enables us to deliver reliable, efficient maritime solutions.
-            </p>
-            <p className="text-lg text-foreground/70 leading-relaxed">
-              We're committed to maintaining the highest standards of professionalism and customer service in every interaction.
-            </p>
+            <ul className="space-y-4 text-lg text-foreground/70 leading-relaxed list-disc pl-6">
+              <li>Express Services Inc is a trusted ship supply company based in Damietta Port, Egypt.</li>
+              <li>We specialize in providing vessels with everything they need from provisions and technical equipment to spare parts and safety supplies.</li>
+              <li>With a dedicated team operating 24/7, we deliver fast, reliable and compliant solutions to meet the demands of maritime operations.</li>
+              <li>At Express, we believe every smooth voyage begins with a well-prepared port and we're here to make that happen.</li>
+            </ul>
           </div>
           <div className="bg-gradient-to-br from-secondary/20 to-accent/20 rounded-lg p-8 h-96 flex items-center justify-center">
             <img
@@ -42,14 +60,20 @@ export default function About() {
         {/* Core Values */}
         <div className="mb-20">
           <h3 className="text-3xl font-bold mb-12 text-center">Our Core Values</h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-6">
             {values.map((value, index) => {
               const Icon = value.icon
               return (
-                <Card key={index} className="p-6 text-center hover:shadow-lg transition-shadow">
-                  <Icon className="w-10 h-10 text-accent mx-auto mb-4" />
-                  <h4 className="text-xl font-bold mb-2">{value.title}</h4>
-                  <p className="text-foreground/70 text-sm leading-relaxed">{value.description}</p>
+                <Card key={index} className="p-8 hover:shadow-lg transition-shadow text-left">
+                  <div className="flex items-start gap-4">
+                    <div className="bg-accent/10 p-3 rounded-lg">
+                      <Icon className="w-6 h-6 text-accent" />
+                    </div>
+                    <div>
+                      <h4 className="text-xl font-bold mb-3 text-accent">{value.title}</h4>
+                      <p className="text-foreground/80 leading-relaxed">{value.description}</p>
+                    </div>
+                  </div>
                 </Card>
               )
             })}

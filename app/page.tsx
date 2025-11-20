@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Ship, Anchor, Compass, ShieldCheck, Clock, Users, Globe, Quote, Star } from 'lucide-react'
+import { Ship, Anchor, Compass, ShieldCheck, Clock, Users, Globe, Quote, Star, MapPin, Zap, Truck, Wrench, AlertTriangle, Droplets } from 'lucide-react'
 import Header from '@/components/header'
 import Hero from '@/components/hero'
 import Footer from '@/components/footer'
@@ -12,33 +12,33 @@ import Link from 'next/link'
 const features = [
   {
     icon: <Compass className="w-8 h-8 text-accent" />,
-    title: 'Global Network',
-    description: 'Extensive network of suppliers and partners worldwide ensuring reliable service anywhere your vessel sails.'
+    title: 'CUSTOMIZED SOLUTIONS',
+    description: 'WE ADAPT OUR SUPPLY SOLUTIONS TO MEET EACH VESSEL\'S SPECIFIC REQUIREMENTS'
   },
   {
     icon: <ShieldCheck className="w-8 h-8 text-accent" />,
-    title: 'Quality Assurance',
-    description: 'Strict quality control measures to ensure all supplies meet international maritime standards.'
-  },
-  {
-    icon: <Clock className="w-8 h-8 text-accent" />,
-    title: '24/7 Operations',
-    description: 'Round-the-clock service to meet your vessel\'s needs, no matter the time or day.'
+    title: 'RELIABLE REPUTATION',
+    description: 'KNOWN FOR DELIVERING QUALITY SERVICE TRUSTED BY VESSELS ACROSS THE REGION'
   },
   {
     icon: <Users className="w-8 h-8 text-accent" />,
-    title: 'Experienced Team',
-    description: 'Dedicated professionals with extensive maritime industry expertise at your service.'
+    title: 'EXPERIENCED TEAM',
+    description: 'OUR PROFESSIONALS UNDERSTAND PORT OPERATIONS AND MARITIME LOGISTICS INSIDE OUT'
   },
   {
-    icon: <Globe className="w-8 h-8 text-accent" />,
-    title: 'Global Coverage',
-    description: 'Comprehensive port agency services across major maritime routes and ports.'
+    icon: <MapPin className="w-8 h-8 text-accent" />,
+    title: 'STRATEGIC LOCATION',
+    description: 'WE OPERATE DIRECTLY FROM INSIDE DAMIETTA PORT ENSURING FAST ACCESS TO VESSELS WITH NO DELAYS'
   },
   {
-    icon: <Anchor className="w-8 h-8 text-accent" />,
-    title: 'Port Expertise',
-    description: 'In-depth knowledge of port operations and regulations in the region.'
+    icon: <Zap className="w-8 h-8 text-accent" />,
+    title: 'SPEED & PRECISION',
+    description: 'WE GUARANTEE TIMELY DELIVERY WITH FULL ATTENTION TO DETAIL EVERY TIME'
+  },
+  {
+    icon: <Clock className="w-8 h-8 text-accent" />,
+    title: 'ROUND-THE-CLOCK OPERATIONS',
+    description: 'OUR TEAM WORKS AROUND THE CLOCK TO MEET URGENT AND TIME-SENSITIVE MARINE NEEDS'
   }
 ]
 
@@ -68,34 +68,24 @@ const testimonials = [
 
 const services = [
   {
-    title: 'Vessel Provisioning',
-    description: 'Complete provisioning services including fresh water, food supplies, and vessel stores.',
-    icon: <Ship className="w-6 h-6" />
+    title: 'LOGISTICAL SUPPORT SERVICES',
+    description: 'WE HANDLE ALL THE LOGISTICS YOUR SHIP NEEDS AT THE PORT OR OUT AT SEA.',
+    icon: <Truck className="w-6 h-6" />
   },
   {
-    title: 'Bunker Supply',
-    description: 'Reliable and timely delivery of marine fuels and lubricants to your vessel.',
-    icon: <Ship className="w-6 h-6" />
+    title: 'SPARE PARTS & TECHNICAL ITEMS',
+    description: 'WE\'VE GOT WHAT YOUR VESSEL NEEDS TO STAY RUNNING SMOOTHLY.',
+    icon: <Wrench className="w-6 h-6" />
   },
   {
-    title: 'Crew Support',
-    description: 'Comprehensive crew services including crew changes, visas, and shore leave assistance.',
-    icon: <Ship className="w-6 h-6" />
+    title: 'MARITIME EMERGENCY SERVICES',
+    description: 'WHEN SOMETHING UNEXPECTED HAPPENS, WE\'RE READY TO STEP IN FAST.',
+    icon: <AlertTriangle className="w-6 h-6" />
   },
   {
-    title: 'Port Agency',
-    description: 'Full range of port agency services to ensure smooth port calls.',
-    icon: <Ship className="w-6 h-6" />
-  },
-  {
-    title: 'Technical Support',
-    description: 'Expert technical assistance and spare parts delivery for your vessel\'s needs.',
-    icon: <Ship className="w-6 h-6" />
-  },
-  {
-    title: 'Customs Clearance',
-    description: 'Efficient customs and immigration clearance services for vessels and crew.',
-    icon: <Ship className="w-6 h-6" />
+    title: 'FOOD & FRESH WATER',
+    description: 'WE DELIVER QUALITY FOOD SUPPLIES AND CLEAN DRINKING WATER TO KEEP YOUR CREW WELL-STOCKED AND READY.',
+    icon: <Droplets className="w-6 h-6" />
   }
 ]
 
@@ -120,10 +110,10 @@ export default function Page() {
               <h2 className="text-3xl md:text-4xl font-bold text-balance">Who We Are</h2>
               <div className="w-20 h-1 bg-accent"></div>
               <p className="text-lg text-foreground/70 leading-relaxed">
-                Express has been a trusted partner in maritime logistics since 2009. Operating from the strategic location of Damietta Port, we serve major international shipping lines and vessel operators with comprehensive maritime solutions.
+                We are a company specialized in providing ship supply services, firmly believing that every safe maritime journey begins at a port equipped with expertise, commitment, and professionalism.
               </p>
               <p className="text-lg text-foreground/70 leading-relaxed">
-                Our experienced team and modern infrastructure enable us to deliver reliable, efficient services while maintaining the highest standards of professionalism and customer care.
+                Our dedicated team ensures that every vessel receives the highest quality supplies and services, maintaining the highest standards of safety and efficiency for your maritime operations.
               </p>
               <Button asChild variant="outline" className="mt-4">
                 <Link href="/about">Learn More About Us</Link>
@@ -177,7 +167,7 @@ export default function Page() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Services</h2>
-            <p className="text-foreground/60 max-w-2xl mx-auto">Comprehensive maritime solutions tailored to your vessel's needs</p>
+            <p className="text-foreground/60 max-w-2xl mx-auto">WE PROVIDE ALL THE ESSENTIALS SHIPS NEED QUICKLY, RELIABLY, AND WHENEVER THEY NEED IT.</p>
             <div className="w-20 h-1 bg-accent mx-auto mt-4"></div>
           </div>
           
@@ -213,31 +203,37 @@ export default function Page() {
             <div>
               <div className="inline-flex items-center gap-2 bg-accent/10 text-accent px-4 py-2 rounded-full mb-6">
                 <Anchor className="w-4 h-4" />
-                <span className="text-sm font-medium">Our Story</span>
+                <span className="text-sm font-medium">Our Mission</span>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">Leading the Way in Maritime Excellence</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Mission</h2>
               <p className="text-lg text-foreground/80 mb-6">
-                At Express, we don't just provide maritime services - we build lasting partnerships. Our journey began with a simple mission: to deliver exceptional service that keeps the world's vessels moving efficiently.
+                To provide comprehensive and reliable ship supply services, rooted in efficiency, precision, and commitment, ensuring uninterrupted maritime operations.
               </p>
-              <p className="text-lg text-foreground/80 mb-8">
-                Today, we stand as a trusted name in Damietta's maritime sector, known for our reliability, expertise, and commitment to excellence. Our team of seasoned professionals brings together decades of combined experience in maritime logistics and vessel support services.
+              <p className="text-lg text-foreground/80 mb-6">
+                We strive to meet our clients' needs for provisions, technical supplies, and logistical support, adhering to the highest standards of quality and safety, through a professional team, an effective supply network, and innovative solutions that keep pace with advancements in the maritime sector.
+              </p>
+              <p className="text-lg text-foreground/80 mb-6">
+                From supplying provisions and equipment to providing spare parts and technical requirements, we offer integrated and rapid solutions that meet the demands of the modern maritime industry.
               </p>
               <div className="grid grid-cols-2 gap-6">
                 <div>
-                  <h3 className="text-2xl font-bold text-accent mb-2">15+</h3>
-                  <p className="text-foreground/70">Years of Experience</p>
+                  <h3 className="text-2xl font-bold text-accent mb-2">24/7</h3>
+                  <p className="text-foreground/70">Support</p>
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-accent mb-2">500+</h3>
-                  <p className="text-foreground/70">Vessels Served</p>
+                  <h3 className="text-2xl font-bold text-accent mb-2">100%</h3>
+                  <p className="text-foreground/70">Commitment</p>
                 </div>
               </div>
             </div>
             <div className="relative">
               <div className="bg-muted rounded-xl aspect-[4/5] w-full">
-                {/* Replace with your image */}
                 <div className="w-full h-full bg-gradient-to-br from-primary/20 to-accent/10 rounded-xl flex items-center justify-center">
-                  <Ship className="w-24 h-24 text-accent/30" />
+                  <img
+                    src="/maritime-port-operations-damietta.jpg"
+                    alt="Maritime operations at Damietta Port"
+                    className="w-full h-full object-cover rounded-xl"
+                  />
                 </div>
               </div>
               <div className="absolute -bottom-6 -right-6 bg-background p-6 rounded-xl shadow-lg border border-border w-3/4">
@@ -246,8 +242,8 @@ export default function Page() {
                     <Star key={i} className="w-4 h-4 fill-current" />
                   ))}
                 </div>
-                <p className="font-medium mb-2">Trusted by leading shipping companies worldwide</p>
-                <p className="text-sm text-foreground/60">Rated 4.9/5 by our clients</p>
+                <p className="font-medium mb-2">Dedicated to excellence in maritime services</p>
+                <p className="text-sm text-foreground/60">Your trusted partner at sea</p>
               </div>
             </div>
           </div>
@@ -295,7 +291,7 @@ export default function Page() {
               <Link href="/contact">Get a Quote</Link>
             </Button>
             <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10" asChild>
-              <Link href="tel:+201234567890">Call Us Now</Link>
+              <Link href="tel:+201016218082">Call Us Now</Link>
             </Button>
           </div>
         </div>
