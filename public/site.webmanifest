@@ -1,0 +1,23 @@
+{
+  "name": "EXPRESS INC. - Maritime Supply Solutions",
+  "short_name": "EXPRESS INC.",
+  "description": "Professional vessel supply and maritime logistics services for Damietta Port",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
