@@ -120,7 +120,7 @@ export default function Page() {
               </Button>
             </div>
             <div className="w-full h-[500px] relative">
-              <div className="absolute inset-0 flex items-center justify-center bg-muted/20 rounded-xl">
+              <div className="absolute inset-0 flex items-center justify-center  rounded-xl">
                 <img
                   src="/cargo-ship-in-damietta-port.jpg"
                   alt="Cargo ship at Damietta Port"
