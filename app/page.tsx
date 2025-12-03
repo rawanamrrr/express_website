@@ -1,13 +1,15 @@
 'use client'
 
-import { useState } from 'react'
-import { Ship, Anchor, Compass, ShieldCheck, Clock, Users, Globe, Quote, Star, MapPin, Zap, Truck, Wrench, AlertTriangle, Droplets } from 'lucide-react'
+import { useState, useRef } from 'react'
+import { Ship, Anchor, Compass, ShieldCheck, Clock, Users, Globe, Quote, Star, MapPin, Zap, Truck, Wrench, AlertTriangle, Droplets, Package, ChevronLeft, ChevronRight } from 'lucide-react'
+import { motion } from 'framer-motion'
 import Header from '@/components/header'
 import Hero from '@/components/hero'
 import Footer from '@/components/footer'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import Link from 'next/link'
+import { AnimatedSection } from '@/components/animated-section'
 
 const features = [
   {
@@ -83,14 +85,31 @@ const services = [
     icon: <AlertTriangle className="w-6 h-6" />
   },
   {
-    title: 'FOOD & FRESH WATER',
+    title: 'FRESH PROVISION ',
     description: 'WE DELIVER QUALITY FOOD SUPPLIES AND CLEAN DRINKING WATER TO KEEP YOUR CREW WELL-STOCKED AND READY.',
     icon: <Droplets className="w-6 h-6" />
-  }
+  },
+  {
+    title: 'CABIN STORES',
+    description: 'ESSENTIAL SUPPLIES AND AMENITIES TO ENSURE COMFORT AND FUNCTIONALITY IN SHIP CABINS.',
+    icon: <Package className="w-6 h-6" />
+  },
 ]
 
 export default function Page() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const testimonialsRef = useRef<HTMLDivElement | null>(null)
+
+  const scrollTestimonials = (direction: 'left' | 'right') => {
+    const container = testimonialsRef.current
+    if (!container) return
+
+    const scrollAmount = container.clientWidth * 0.8
+    container.scrollBy({
+      left: direction === 'left' ? -scrollAmount : scrollAmount,
+      behavior: 'smooth',
+    })
+  }
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -103,7 +122,10 @@ export default function Page() {
       <Hero />
 
       {/* Who We Are Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-background">
+      <AnimatedSection
+        className="py-16 px-4 sm:px-6 lg:px-8 bg-background"
+        direction="up"
+      >
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
@@ -122,8 +144,8 @@ export default function Page() {
             <div className="w-full h-[500px] relative">
               <div className="absolute inset-0 flex items-center justify-center  rounded-xl">
                 <img
-                  src="/cargo-ship-in-damietta-port.jpg"
-                  alt="Cargo ship at Damietta Port"
+                  src="/ship-image.jpg"
+                  alt="Ship at sea"
                   className="h-full w-auto max-w-full object-contain p-4"
                   onError={(e) => {
                     console.error('Failed to load image:', e);
@@ -136,10 +158,13 @@ export default function Page() {
             </div>
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* Features Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/20">
+      <AnimatedSection
+        className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/20"
+        direction="up"
+      >
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose Express?</h2>
@@ -148,22 +173,33 @@ export default function Page() {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((feature, index) => (
-              <Card key={index} className="p-6 hover:shadow-lg transition-shadow duration-300">
-                <div className="flex flex-col items-center text-center">
-                  <div className="p-3 bg-accent/10 rounded-full mb-4">
-                    {feature.icon}
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.6, ease: 'easeOut', delay: index * 0.05 }}
+              >
+                <Card className="p-6 hover:shadow-lg transition-shadow duration-300">
+                  <div className="flex flex-col items-center text-center">
+                    <div className="p-3 bg-accent/10 rounded-full mb-4">
+                      {feature.icon}
+                    </div>
+                    <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+                    <p className="text-foreground/70">{feature.description}</p>
                   </div>
-                  <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                  <p className="text-foreground/70">{feature.description}</p>
-                </div>
-              </Card>
+                </Card>
+              </motion.div>
             ))}
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* Services Preview */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-background">
+      <AnimatedSection
+        className="py-20 px-4 sm:px-6 lg:px-8 bg-background"
+        direction="up"
+      >
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Services</h2>
@@ -173,7 +209,14 @@ export default function Page() {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
-              <div key={index} className="group">
+              <motion.div
+                key={index}
+                className="group"
+                initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.6, ease: 'easeOut', delay: index * 0.05 }}
+              >
                 <div className="h-full p-6 bg-card border border-border rounded-lg hover:border-accent/50 transition-colors">
                   <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center mb-4 text-accent group-hover:bg-accent group-hover:text-white transition-colors">
                     {service.icon}
@@ -184,7 +227,7 @@ export default function Page() {
                     <Link href="/services">Learn more →</Link>
                   </Button>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
           
@@ -194,10 +237,13 @@ export default function Page() {
             </Button>
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* About Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-background">
+      <AnimatedSection
+        className="py-20 px-4 sm:px-6 lg:px-8 bg-background"
+        direction="up"
+      >
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
@@ -248,10 +294,13 @@ export default function Page() {
             </div>
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* Testimonials Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/20">
+      <AnimatedSection
+        className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/20"
+        direction="up"
+      >
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">What Our Clients Say</h2>
@@ -259,28 +308,86 @@ export default function Page() {
             <div className="w-20 h-1 bg-accent mx-auto mt-4"></div>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <Card key={index} className="p-6 h-full">
-                <Quote className="w-8 h-8 text-accent/30 mb-4" />
-                <p className="text-foreground/80 mb-6 italic">"{testimonial.content}"</p>
-                <div className="mt-auto">
-                  <div className="flex items-center gap-2 mb-1">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
-                    ))}
-                  </div>
-                  <h4 className="font-semibold">{testimonial.name}</h4>
-                  <p className="text-sm text-foreground/60">{testimonial.role}, {testimonial.company}</p>
-                </div>
-              </Card>
-            ))}
+          <div className="flex items-center justify-end text-xs sm:text-sm text-foreground/60 mb-3 sm:mb-4">
+            <span className="inline sm:hidden">Swipe to see more</span>
+            <span className="hidden sm:inline">Swipe horizontally to see more testimonials</span>
+            <span className="ml-2">← →</span>
+          </div>
+
+          <div ref={testimonialsRef} className="relative overflow-x-auto pb-4">
+            <div className="flex gap-6 md:gap-8 snap-x snap-mandatory">
+              {testimonials.map((testimonial, index) => (
+                <motion.div
+                  key={index}
+                  className="min-w-[85%] sm:min-w-[60%] md:min-w-[45%] lg:min-w-[32%] snap-center"
+                  initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.6, ease: 'easeOut', delay: index * 0.05 }}
+                >
+                  <Card className="p-6 h-full">
+                    <Quote className="w-8 h-8 text-accent/30 mb-4" />
+                    <p className="text-foreground/80 mb-6 italic">"{testimonial.content}"</p>
+                    <div className="mt-auto">
+                      <div className="flex items-center gap-2 mb-1">
+                        {[...Array(testimonial.rating)].map((_, i) => (
+                          <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
+                        ))}
+                      </div>
+                      <h4 className="font-semibold">{testimonial.name}</h4>
+                      <p className="text-sm text-foreground/60">{testimonial.role}, {testimonial.company}</p>
+                    </div>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+            {/* Desktop / tablet overlay arrows */}
+            <button
+              type="button"
+              aria-label="Scroll testimonials left"
+              onClick={() => scrollTestimonials('left')}
+              className="hidden sm:flex items-center justify-center absolute left-2 top-1/2 -translate-y-1/2 h-9 w-9 rounded-full bg-background/80 border border-border shadow-md hover:bg-background text-foreground transition-colors z-10"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <button
+              type="button"
+              aria-label="Scroll testimonials right"
+              onClick={() => scrollTestimonials('right')}
+              className="hidden sm:flex items-center justify-center absolute right-2 top-1/2 -translate-y-1/2 h-9 w-9 rounded-full bg-background/80 border border-border shadow-md hover:bg-background text-foreground transition-colors z-10"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-muted/40 to-transparent hidden sm:block" />
+          </div>
+
+          {/* Mobile arrows below slider */}
+          <div className="flex sm:hidden justify-center gap-4 mt-3">
+            <button
+              type="button"
+              aria-label="Scroll testimonials left"
+              onClick={() => scrollTestimonials('left')}
+              className="flex items-center justify-center h-9 w-9 rounded-full bg-background/90 border border-border shadow-md text-foreground"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <button
+              type="button"
+              aria-label="Scroll testimonials right"
+              onClick={() => scrollTestimonials('right')}
+              className="flex items-center justify-center h-9 w-9 rounded-full bg-background/90 border border-border shadow-md text-foreground"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-primary/90 to-primary">
+      <AnimatedSection
+        className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-primary/90 to-primary"
+        direction="up"
+      >
         <div className="max-w-4xl mx-auto text-center text-white">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Experience Excellence in Maritime Services?</h2>
           <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto">
@@ -295,7 +402,7 @@ export default function Page() {
             </Button>
           </div>
         </div>
-      </section>
+      </AnimatedSection>
       
       <Footer />
     </div>

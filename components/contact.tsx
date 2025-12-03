@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Phone, Mail, MapPin, Clock, Globe, Instagram, MessageCircle, Facebook, Twitter, Linkedin, Youtube, Music2 } from 'lucide-react'
 import Map from '@/components/map'
+import { motion } from 'framer-motion'
 
 type View = 'home' | 'services' | 'about' | 'contact'
 
@@ -138,7 +139,14 @@ export default function Contact({ onNavigate }: ContactProps) {
               {contactInfo.map((info, index) => {
                 const Icon = info.icon
                 return (
-                  <div key={index} className="flex gap-4">
+                  <motion.div
+                    key={index}
+                    className="flex gap-4"
+                    initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ duration: 0.6, ease: 'easeOut', delay: index * 0.04 }}
+                  >
                     {typeof info.icon === 'string' ? (
                       info.icon === 'globe' ? <Globe className="w-6 h-6 text-accent flex-shrink-0 mt-1" /> :
                       info.icon === 'instagram' ? <Instagram className="w-6 h-6 text-accent flex-shrink-0 mt-1" /> :
@@ -156,7 +164,7 @@ export default function Contact({ onNavigate }: ContactProps) {
                         <p className="text-foreground/70">{info.value}</p>
                       )}
                     </div>
-                  </div>
+                  </motion.div>
                 )
               })}
             </div>
@@ -165,7 +173,13 @@ export default function Contact({ onNavigate }: ContactProps) {
             <div className="mt-12">
               <h4 className="text-lg font-bold mb-4">Quick Services</h4>
               <div className="grid grid-cols-2 gap-3">
-                {['Provisioning', 'Bunkers', 'Maintenance', 'Port Services', 'Crew Support', 'Cargo'].map((service, i) => (
+                {[
+                  'Logistical Support Services',
+                  'Spare Parts & Technical Items',
+                  'Maritime Emergency Services',
+                  'Fresh Provision',
+                  'Cabin Stores',
+                ].map((service, i) => (
                   <div key={i} className="bg-background rounded px-4 py-2 text-sm font-medium text-center hover:bg-accent/10 transition-colors">
                     {service}
                   </div>
@@ -176,7 +190,12 @@ export default function Contact({ onNavigate }: ContactProps) {
           </div>
 
           {/* Quote Request Form */}
-          <div>
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.1 }}
+          >
             <Card className="p-8">
               {submitted ? (
                 <div className="text-center py-12">
@@ -243,11 +262,11 @@ export default function Contact({ onNavigate }: ContactProps) {
                     className="w-full px-4 py-2 border border-border rounded bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-accent"
                   >
                     <option value="">Select Service Type</option>
-                    <option value="provisioning">Vessel Provisioning</option>
-                    <option value="bunkers">Bunker Supply</option>
-                    <option value="maintenance">Marine Maintenance</option>
-                    <option value="cargo">Cargo Handling</option>
-                    <option value="crew">Crew Support</option>
+                    <option value="logistical_support">Logistical Support Services</option>
+                    <option value="spare_parts">Spare Parts & Technical Items</option>
+                    <option value="maritime_emergency">Maritime Emergency Services</option>
+                    <option value="fresh_provision">Fresh Provision</option>
+                    <option value="cabin_stores">Cabin Stores</option>
                     <option value="other">Other</option>
                   </select>
 
@@ -269,7 +288,7 @@ export default function Contact({ onNavigate }: ContactProps) {
                 </form>
               )}
             </Card>
-          </div>
+          </motion.div>
         </div>
         
         {/* Map Section */}

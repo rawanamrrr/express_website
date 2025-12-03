@@ -2,6 +2,7 @@
 
 import { Button } from '@/components/ui/button'
 import { Ship } from 'lucide-react'
+import { AnimatedSection } from '@/components/animated-section'
 
 export default function Hero() {
   const scrollToSection = (id: string) => {
@@ -13,15 +14,16 @@ export default function Hero() {
   }
 
   return (
-    <section 
-      className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 text-center" 
+    <AnimatedSection
+      className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 text-center"
       id="home"
       style={{
         backgroundImage: 'url(/cargo-ship-in-damietta-port.jpg)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat'
+        backgroundRepeat: 'no-repeat',
       }}
+      direction="up"
     >
       {/* Dark overlay for text readability */}
       <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/80 pointer-events-none" />
@@ -85,6 +87,6 @@ export default function Hero() {
           </div>
         </div>
       </div>
-    </section>
+    </AnimatedSection>
   )
 }

@@ -1,9 +1,10 @@
 'use client'
 
 import { Card } from '@/components/ui/card'
-import { Truck, Wrench, AlertTriangle, Droplets } from 'lucide-react'
+import { Truck, Wrench, AlertTriangle, Droplets, Package } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 
 export default function Services() {
   const services = [
@@ -33,11 +34,19 @@ export default function Services() {
     },
     {
       icon: Droplets,
-      title: 'FOOD & FRESH WATER',
+      title: 'FRESH PROVISION',
       description: 'WE DELIVER QUALITY FOOD SUPPLIES AND CLEAN DRINKING WATER TO KEEP YOUR CREW WELL-STOCKED AND READY.',
       features: ['Fresh provisions', 'Beverages', 'Dry stores', 'Potable water'],
       image: '/placeholder.jpg',
-      alt: 'Food and water supply for vessels'
+      alt: 'Fresh provision supply for vessels'
+    },
+    {
+      icon: Package,
+      title: 'CABIN STORES',
+      description: 'ESSENTIAL SUPPLIES AND AMENITIES TO ENSURE COMFORT AND FUNCTIONALITY IN SHIP CABINS.',
+      features: ['Bedding & linens', 'Cabin supplies', 'Cleaning products', 'Toiletries'],
+      image: '/placeholder.jpg',
+      alt: 'Cabin stores and amenities for vessels'
     }
   ]
 
@@ -60,49 +69,58 @@ export default function Services() {
 
         <div className="grid md:grid-cols-2 gap-8">
           {services.map((service, index) => (
-            <Card key={index} className="group relative overflow-hidden border-0 bg-gradient-to-br from-card to-card/50 backdrop-blur-sm shadow-luxury hover:shadow-luxury-lg transition-all duration-500 hover:scale-[1.02] flex flex-col">
-              {/* Image */}
-              <div className="h-48 relative overflow-hidden">
-                <Image
-                  src={service.image}
-                  alt={service.alt}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-              </div>
-              
-              <div className="relative p-8 flex-1 flex flex-col">
-                {/* Icon */}
-                <div className="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-luxury -mt-10 z-10 border-4 border-background">
-                  <service.icon className="w-8 h-8 text-primary-foreground" />
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.6, ease: 'easeOut', delay: index * 0.05 }}
+              className="group"
+            >
+              <Card className="relative overflow-hidden border-0 bg-gradient-to-br from-card to-card/50 backdrop-blur-sm shadow-luxury hover:shadow-luxury-lg transition-all duration-500 hover:scale-[1.02] flex flex-col">
+                {/* Image */}
+                <div className="h-48 relative overflow-hidden">
+                  <Image
+                    src={service.image}
+                    alt={service.alt}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 </div>
                 
-                {/* Content */}
-                <h3 className="text-2xl font-bold mb-4 text-foreground group-hover:text-primary transition-colors duration-300">
-                  {service.title}
-                </h3>
-                <p className="text-foreground/70 leading-relaxed mb-6">
-                  {service.description}
-                </p>
-                
-                {/* Features */}
-                {service.features && (
-                  <ul className="space-y-2 mt-auto">
-                    {service.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center gap-2 text-sm text-foreground/60">
-                        <div className="w-1.5 h-1.5 bg-accent rounded-full" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-                
-                {/* Hover Effect Line */}
-                <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-accent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
-              </div>
-            </Card>
+                <div className="relative p-8 flex-1 flex flex-col">
+                  {/* Icon */}
+                  <div className="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-luxury -mt-10 z-10 border-4 border-background">
+                    <service.icon className="w-8 h-8 text-primary-foreground" />
+                  </div>
+                  
+                  {/* Content */}
+                  <h3 className="text-2xl font-bold mb-4 text-foreground group-hover:text-primary transition-colors duration-300">
+                    {service.title}
+                  </h3>
+                  <p className="text-foreground/70 leading-relaxed mb-6">
+                    {service.description}
+                  </p>
+                  
+                  {/* Features */}
+                  {service.features && (
+                    <ul className="space-y-2 mt-auto">
+                      {service.features.map((feature, idx) => (
+                        <li key={idx} className="flex items-center gap-2 text-sm text-foreground/60">
+                          <div className="w-1.5 h-1.5 bg-accent rounded-full" />
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                  
+                  {/* Hover Effect Line */}
+                  <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-accent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+                </div>
+              </Card>
+            </motion.div>
           ))}
         </div>
 
