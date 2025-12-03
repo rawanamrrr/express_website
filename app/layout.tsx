@@ -49,10 +49,12 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body className={`font-sans antialiased`}>
-        {children}
-        <Analytics />
+    <html lang="en" className="overflow-x-hidden">
+      <body className={`font-sans antialiased w-full max-w-[100vw] overflow-x-hidden`}>
+        <div className="w-full overflow-x-hidden">
+          {children}
+          <Analytics />
+        </div>
       </body>
     </html>
   )

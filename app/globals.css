@@ -1,6 +1,16 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
+/* Prevent horizontal scroll */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 :root {

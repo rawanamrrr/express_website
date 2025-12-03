@@ -22,14 +22,14 @@ export default function Header({ mobileMenuOpen, setMobileMenuOpen, currentPage 
   return (
     <header className="sticky top-0 z-50 backdrop-blur-xl bg-background/80 border-b border-border/50 shadow-luxury">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+        <div className="flex justify-between items-center h-28">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 cursor-pointer group transition-all duration-300 hover:scale-[1.02]">
-            <div className="relative">
+          <Link href="/" className="flex items-center h-full cursor-pointer group transition-all duration-300 hover:scale-[1.02]">
+            <div className="relative h-[120%] -mt-2">
               <img 
                 src="/logo.png" 
                 alt="Express INC. Logo" 
-                className="h-24 w-auto object-contain"
+                className="h-full w-auto object-contain"
               />
             </div>
           </Link>

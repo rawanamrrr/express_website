@@ -53,7 +53,7 @@ export default function Hero() {
 
   return (
     <AnimatedSection
-      className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 text-center overflow-hidden"
+      className="relative min-h-screen w-full overflow-hidden flex items-center justify-center px-4 sm:px-6 lg:px-8 text-center"
       id="home"
       direction="up"
     >
@@ -94,7 +94,7 @@ export default function Hero() {
         }}
       />
 
-      <div className="max-w-7xl w-full mx-auto relative z-10">
+      <div className="max-w-7xl w-full mx-auto relative z-10 overflow-hidden">
         <div className="flex flex-col items-center justify-center">
           {/* Centered Content */}
           <div className="space-y-6 max-w-3xl">
