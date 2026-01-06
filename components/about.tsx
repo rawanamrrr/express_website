@@ -2,7 +2,6 @@
 
 import { Card } from '@/components/ui/card'
 import { CheckCircle, Award, Shield, Clock, Zap, Handshake } from 'lucide-react'
-import { motion } from 'framer-motion'
 
 export default function About() {
   const values = [
@@ -65,12 +64,8 @@ export default function About() {
             {values.map((value, index) => {
               const Icon = value.icon
               return (
-                <motion.div
+                <div
                   key={index}
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.6, ease: 'easeOut', delay: index * 0.05 }}
                 >
                   <Card className="p-8 hover:shadow-lg transition-shadow text-left">
                     <div className="flex items-start gap-4">
@@ -83,7 +78,7 @@ export default function About() {
                       </div>
                     </div>
                   </Card>
-                </motion.div>
+                </div>
               )
             })}
           </div>

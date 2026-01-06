@@ -386,11 +386,11 @@ export default function Page() {
 
       {/* Ports Map Section */}
       <AnimatedSection
-        className="pt-4 pb-20 px-4 sm:px-6 lg:px-8 bg-background"
+        className="py-20 px-4 sm:px-6 lg:px-8 bg-background"
         direction="up"
       >
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-1">
+          <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Port Coverage</h2>
             <p className="text-foreground/60 max-w-2xl mx-auto">
               Explore the key ports where we operate. Hover or click on a pin to zoom to that location.

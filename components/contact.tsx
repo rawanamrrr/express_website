@@ -5,7 +5,6 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Phone, Mail, MapPin, Clock, Globe, Instagram, MessageCircle, Facebook, Twitter, Linkedin, Youtube, Music2 } from 'lucide-react'
 import Map from '@/components/map'
-import { motion } from 'framer-motion'
 
 type View = 'home' | 'services' | 'about' | 'contact'
 
@@ -139,13 +138,9 @@ export default function Contact({ onNavigate }: ContactProps) {
               {contactInfo.map((info, index) => {
                 const Icon = info.icon
                 return (
-                  <motion.div
+                  <div
                     key={index}
                     className="flex gap-4"
-                    initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, amount: 0.3 }}
-                    transition={{ duration: 0.6, ease: 'easeOut', delay: index * 0.04 }}
                   >
                     {typeof info.icon === 'string' ? (
                       info.icon === 'globe' ? <Globe className="w-6 h-6 text-accent flex-shrink-0 mt-1" /> :
@@ -164,7 +159,7 @@ export default function Contact({ onNavigate }: ContactProps) {
                         <p className="text-foreground/70">{info.value}</p>
                       )}
                     </div>
-                  </motion.div>
+                  </div>
                 )
               })}
             </div>
@@ -190,12 +185,7 @@ export default function Contact({ onNavigate }: ContactProps) {
           </div>
 
           {/* Quote Request Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.1 }}
-          >
+          <div>
             <Card className="p-8">
               {submitted ? (
                 <div className="text-center py-12">
@@ -288,7 +278,7 @@ export default function Contact({ onNavigate }: ContactProps) {
                 </form>
               )}
             </Card>
-          </motion.div>
+          </div>
         </div>
         
         {/* Map Section */}

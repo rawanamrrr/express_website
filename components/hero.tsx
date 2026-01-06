@@ -60,14 +60,27 @@ export default function Hero() {
       {/* Dark overlay for text readability */}
       {/* Animated Background Image */}
       <motion.div 
-        className="absolute inset-0"
+        className="absolute inset-0 bg-cover bg-no-repeat bg-[center_30%] sm:hidden"
         style={{
-          backgroundImage: 'url(/cargo-ship-in-damietta-port.jpg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
+          backgroundImage: 'url(/cargo-ship-in-damietta-port-mobile.png)',
         }}
-        initial={{ scale: 1.1 }}
+        initial={{ scale: 1.03 }}
+        animate={{ 
+          scale: 1,
+          transition: { 
+            duration: 10,
+            ease: 'easeInOut',
+            repeat: Infinity,
+            repeatType: 'reverse'
+          }
+        }}
+      />
+      <motion.div 
+        className="absolute inset-0 bg-cover bg-no-repeat bg-[center_30%] sm:bg-center hidden sm:block"
+        style={{
+          backgroundImage: 'url(/cargo-ship-in-damietta-port.png)',
+        }}
+        initial={{ scale: 1.03 }}
         animate={{ 
           scale: 1,
           transition: { 
@@ -186,8 +199,8 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="grid grid-cols-3 gap-6 mt-20 pt-12 border-t border-white/20 w-full max-w-2xl mx-auto"
         >
-          <StatsCounter value={500} label="Vessels Served" />
-          <StatsCounter value={15} label="Years Experience" />
+          <StatsCounter value={50} label="Vessels Served" />
+          <StatsCounter value={5} label="Years Experience" />
           <div className="text-center">
             <p className="text-3xl font-bold text-white drop-shadow-lg">24/7</p>
             <p className="text-sm text-white">Support Available</p>

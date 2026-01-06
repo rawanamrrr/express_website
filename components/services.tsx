@@ -4,7 +4,6 @@ import { Card } from '@/components/ui/card'
 import { Truck, Wrench, AlertTriangle, Droplets, Package } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 
 export default function Services() {
   const services = [
@@ -69,12 +68,8 @@ export default function Services() {
 
         <div className="grid md:grid-cols-2 gap-8">
           {services.map((service, index) => (
-            <motion.div
+            <div
               key={index}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.6, ease: 'easeOut', delay: index * 0.05 }}
               className="group"
             >
               <Card className="relative overflow-hidden border-0 bg-gradient-to-br from-card to-card/50 backdrop-blur-sm shadow-luxury hover:shadow-luxury-lg transition-all duration-500 hover:scale-[1.02] flex flex-col">
@@ -120,7 +115,7 @@ export default function Services() {
                   <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-accent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
                 </div>
               </Card>
-            </motion.div>
+            </div>
           ))}
         </div>
 
