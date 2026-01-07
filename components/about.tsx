@@ -50,7 +50,7 @@ export default function About() {
           </div>
           <div className="bg-gradient-to-br from-secondary/20 to-accent/20 rounded-lg p-8 h-96 flex items-center justify-center">
             <img
-              src="/maritime-port-operations-damietta.jpg"
+              src="/ship-image.jpeg"
               alt="Port operations"
               className="w-full h-full object-cover rounded"
             />

@@ -142,10 +142,10 @@ export default function Page() {
                 <Link href="/about">Learn More About Us</Link>
               </Button>
             </div>
-            <div className="w-full h-[500px] relative">
+            <div className="w-full h-[300px] relative">
               <div className="absolute inset-0 flex items-center justify-center  rounded-xl">
                 <img
-                  src="/ship-image.jpg"
+                  src="/ship-image.jpeg"
                   alt="Ship at sea"
                   className="h-full w-auto max-w-full object-contain p-4"
                   onError={(e) => {
@@ -277,13 +277,19 @@ export default function Page() {
               <div className="bg-muted rounded-xl aspect-[4/5] w-full">
                 <div className="w-full h-full bg-gradient-to-br from-primary/20 to-accent/10 rounded-xl flex items-center justify-center">
                   <img
-                    src="/maritime-port-operations-damietta.jpg"
-                    alt="Maritime operations at Damietta Port"
+                    src="/our-mission.jpeg"
+                    alt="Our Mission at Damietta Port"
                     className="w-full h-full object-cover rounded-xl"
                   />
                 </div>
               </div>
-              <div className="absolute -bottom-6 -right-6 bg-background p-6 rounded-xl shadow-lg border border-border w-3/4">
+              <motion.div 
+                className="absolute -bottom-20 -right-6 bg-background p-5 rounded-xl shadow-lg border border-border w-3/4"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
                 <div className="flex items-center gap-2 text-yellow-400 mb-2">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} className="w-4 h-4 fill-current" />
@@ -291,7 +297,7 @@ export default function Page() {
                 </div>
                 <p className="font-medium mb-2">Dedicated to excellence in maritime services</p>
                 <p className="text-sm text-foreground/60">Your trusted partner at sea</p>
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>

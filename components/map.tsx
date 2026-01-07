@@ -2,7 +2,10 @@
 
 const Map = () => {
   const handleMapClick = () => {
-    window.open('https://www.google.com/maps/place/Port+of+Damietta/@31.3861111,31.8199999,15z/data=!4m6!3m5!1s0x14f9e3a4f7e7b2b1:0x1e5e5e5e5e5e5e5e!8m2!3d31.3861111!4d31.8199999!16s%2Fm%2F0h6z8f3?entry=ttu', '_blank');
+    window.open(
+      'https://www.google.com/maps/place/Port+of+Damietta/@31.3861111,31.8199999,15z/data=!4m6!3m5!1s0x14f9e3a4f7e7b2b1:0x1e5e5e5e5e5e5e5e!8m2!3d31.3861111!4d31.8199999!16s%2Fm%2F0h6z8f3?entry=ttu',
+      '_blank',
+    );
   };
 
   return (

@@ -11,7 +11,8 @@ type Port = {
   yMobile: number
   xDesktop: number
   yDesktop: number
-  mapsUrl: string
+  imageSrc: string
+  externalUrl: string
 }
 
 const ports: Port[] = [
@@ -23,8 +24,9 @@ const ports: Port[] = [
     yMobile: 28.7,
     xDesktop: 53.8,
     yDesktop: 19,
-    mapsUrl:
-      'https://www.google.com/maps?q=Alexandria+Port+Egypt&output=embed',
+    imageSrc: '/alexandria-port.png',
+    externalUrl:
+      'https://www.marinetraffic.com/en/ais/details/ports/307',
   },
   {
     id: 'el-dekheila',
@@ -34,8 +36,9 @@ const ports: Port[] = [
     yMobile: 29,
     xDesktop: 53.4,
     yDesktop: 19.2,
-    mapsUrl:
-      'https://www.google.com/maps?q=El+Dekheila+Port+Egypt&output=embed',
+    imageSrc: '/dekhila-port.png',
+    externalUrl:
+      'https://www.marinetraffic.com/en/ais/details/ports/18848',
   },
   {
     id: 'damietta',
@@ -45,8 +48,9 @@ const ports: Port[] = [
     yMobile: 28.6,
     xDesktop: 54.5,
     yDesktop: 19,
-    mapsUrl:
-      'https://www.google.com/maps?q=Damietta+Port+Egypt&output=embed',
+    imageSrc: '/damietta-port.png',
+    externalUrl:
+      'https://www.marinetraffic.com/en/ais/details/ports/997',
   },
   {
     id: 'port-said',
@@ -56,8 +60,9 @@ const ports: Port[] = [
     yMobile: 28.7,
     xDesktop: 55.1,
     yDesktop: 19,
-    mapsUrl:
-      'https://www.google.com/maps?q=Port+Said+Port+Egypt&output=embed',
+    imageSrc: '/portsaid-port.png',
+    externalUrl:
+      'https://www.marinetraffic.com/en/ais/details/ports/2175',
   },
   {
     id: 'east-port-said',
@@ -67,8 +72,9 @@ const ports: Port[] = [
     yMobile: 29.4,
     xDesktop: 55,
     yDesktop: 19.6,
-    mapsUrl:
-      'https://www.google.com/maps?q=East+Port+Said+Port+Egypt&output=embed',
+    imageSrc: '/portsaid-port.png',
+    externalUrl:
+      'https://www.marinetraffic.com/en/ais/home/centerx:32.3400/centery:31.2700/zoom:11',
   },
   {
     id: 'ein-el-sokhna',
@@ -78,8 +84,9 @@ const ports: Port[] = [
     yMobile: 30.5,
     xDesktop: 55,
     yDesktop: 21.5,
-    mapsUrl:
-      'https://www.google.com/maps?q=Ain+Sokhna+Port+Egypt&output=embed',
+    imageSrc: '/sokhna-port.png',
+    externalUrl:
+      'https://www.marinetraffic.com/en/ais/details/ports/3203',
   },
 ]
 
@@ -240,19 +247,33 @@ export default function PortsMap() {
                 <div className="text-[10px] text-gray-600">{cardPort.city}</div>
               </div>
               <div className="w-full h-20 sm:h-32 md:h-40">
-                <iframe
-                  src={cardPort.mapsUrl}
-                  className="w-full h-full border-0"
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  allowFullScreen
-                />
+                <a
+                  href={cardPort.externalUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full h-full"
+                >
+                  <img
+                    src={cardPort.imageSrc}
+                    alt={cardPort.name}
+                    className="w-full h-full object-cover"
+                  />
+                </a>
+              </div>
+              <div className="px-3 py-2 border-t border-gray-200 text-[10px] text-blue-600 text-right">
+                <a
+                  href={cardPort.externalUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:underline"
+                >
+                  View on MarineTraffic
+                </a>
               </div>
             </div>
           )}
         </motion.div>
       </div>
-
     </div>
   )
 }

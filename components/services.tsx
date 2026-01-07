@@ -12,7 +12,7 @@ export default function Services() {
       title: 'LOGISTICAL SUPPORT SERVICES',
       description: 'WE HANDLE ALL THE LOGISTICS YOUR SHIP NEEDS AT THE PORT OR OUT AT SEA.',
       features: ['Port logistics', 'Cargo handling', 'Documentation', 'Customs clearance'],
-      image: '/maritime-port-operations-damietta.jpg',
+      image: '/services-2.jpeg',
       alt: 'Port operations and logistics services'
     },
     {
@@ -20,7 +20,7 @@ export default function Services() {
       title: 'SPARE PARTS & TECHNICAL ITEMS',
       description: 'WE\'VE GOT WHAT YOUR VESSEL NEEDS TO STAY RUNNING SMOOTHLY.',
       features: ['Engine parts', 'Technical equipment', 'Maintenance supplies', 'Emergency spares'],
-      image: '/cargo-ship-in-damietta-port.jpg',
+      image: '/services-3.jpeg',
       alt: 'Ship maintenance and technical parts'
     },
     {
@@ -28,7 +28,7 @@ export default function Services() {
       title: 'MARITIME EMERGENCY SERVICES',
       description: 'WHEN SOMETHING UNEXPECTED HAPPENS, WE\'RE READY TO STEP IN FAST.',
       features: ['24/7 response', 'Emergency repairs', 'Technical assistance', 'Rapid deployment'],
-      image: '/placeholder.jpg',
+      image: '/services-4.jpeg',
       alt: 'Emergency response services at sea'
     },
     {
@@ -36,7 +36,7 @@ export default function Services() {
       title: 'FRESH PROVISION',
       description: 'WE DELIVER QUALITY FOOD SUPPLIES AND CLEAN DRINKING WATER TO KEEP YOUR CREW WELL-STOCKED AND READY.',
       features: ['Fresh provisions', 'Beverages', 'Dry stores', 'Potable water'],
-      image: '/placeholder.jpg',
+      image: '/food-service.jpg',
       alt: 'Fresh provision supply for vessels'
     },
     {
@@ -44,7 +44,7 @@ export default function Services() {
       title: 'CABIN STORES',
       description: 'ESSENTIAL SUPPLIES AND AMENITIES TO ENSURE COMFORT AND FUNCTIONALITY IN SHIP CABINS.',
       features: ['Bedding & linens', 'Cabin supplies', 'Cleaning products', 'Toiletries'],
-      image: '/placeholder.jpg',
+      image: '/services-5.jpeg',
       alt: 'Cabin stores and amenities for vessels'
     }
   ]
