@@ -38,21 +38,54 @@ export default function About() {
         {/* Main About */}
         <div className="grid md:grid-cols-2 gap-12 mb-20 items-center">
           <div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-balance uppercase">
-              About Us
-            </h2>
-            <ul className="space-y-4 text-lg text-foreground/70 leading-relaxed list-disc pl-6">
-              <li>Express Services Inc is a trusted ship supply company based in Damietta Port, Egypt.</li>
-              <li>We specialize in providing vessels with everything they need from provisions and technical equipment to spare parts and safety supplies.</li>
-              <li>With a dedicated team operating 24/7, we deliver fast, reliable and compliant solutions to meet the demands of maritime operations.</li>
-              <li>At Express, we believe every smooth voyage begins with a well-prepared port and we're here to make that happen.</li>
-            </ul>
+            
+            <div className="space-y-8 text-lg text-foreground/70 leading-relaxed">
+              <div>
+                <h3 className="text-2xl font-semibold mb-2">WHO WE ARE</h3>
+                <p>
+                  We are a professional marine and maritime supply company with extensive experience in supporting vessel operations through integrated supply and logistics services.
+                </p>
+                <p>
+                  Our expertise has been built through years of continuous involvement in the maritime sector, allowing us to deliver reliable solutions that meet the operational demands of modern vessels.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-semibold mb-2">EXPERIENCE &amp; EXPERTISE</h3>
+                <p>
+                  With accumulated experience in marine supply operations, we provide practical and effective logistical solutions tailored to each vessels operational requirements.
+                </p>
+                <p>
+                  Our operational knowledge enables us to respond quickly, manage complex supply needs, and maintain consistent service quality across multiple ports.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-semibold mb-2">LOGISTICS &amp; TIME MANAGEMENT</h3>
+                <p>
+                  Our primary objective is to minimize service and supply lead times in order to protect vessel schedules and operational timelines.
+                </p>
+                <p>
+                  By optimizing logistics coordination and reducing unnecessary delays, we help vessels maintain planned port stays, reduce downtime, and avoid schedule disruptions.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-semibold mb-2">SUSTAINABILITY &amp; ENVIRONMENT</h3>
+                <p>
+                  We are committed to supporting sustainable maritime operations and protecting marine life.
+                </p>
+                <p>
+                  Reducing service time at port directly contributes to lower fuel consumption, decreased emissions, and reduced marine pollution. Through efficient supply execution, we actively support environmentally responsible maritime practices.
+                </p>
+              </div>
+            </div>
           </div>
-          <div className="bg-gradient-to-br from-secondary/20 to-accent/20 rounded-lg p-8 h-96 flex items-center justify-center">
+          <div className="h-96 flex items-center justify-center">
             <img
               src="/ship-image.jpeg"
               alt="Port operations"
-              className="w-full h-full object-cover rounded"
+              className="w-full h-full object-cover rounded-lg"
             />
           </div>
         </div>
@@ -92,7 +125,7 @@ export default function About() {
           </p>
           <div className="grid md:grid-cols-3 gap-6">
             <div className="bg-background rounded p-6">
-              <p className="font-bold text-2xl mb-2">50+</p>
+              <p className="font-bold text-2xl mb-2">20+</p>
               <p className="text-foreground/60">Professional Staff</p>
             </div>
             <div className="bg-background rounded p-6">

@@ -1,7 +1,7 @@
 'use client'
 
-import { useState, useRef } from 'react'
-import { Ship, Anchor, Compass, ShieldCheck, Clock, Users, Globe, Quote, Star, MapPin, Zap, Truck, Wrench, AlertTriangle, Droplets, Package, ChevronLeft, ChevronRight } from 'lucide-react'
+import { useState } from 'react'
+import { Ship, Anchor, Compass, ShieldCheck, Clock, Users, Globe, Star, MapPin, Zap, Truck, Wrench, AlertTriangle, Droplets, Package, Flag } from 'lucide-react'
 import { motion } from 'framer-motion'
 import Header from '@/components/header'
 import Hero from '@/components/hero'
@@ -45,30 +45,6 @@ const features = [
   }
 ]
 
-const testimonials = [
-  {
-    name: 'Captain Ahmed Hassan',
-    company: 'Mediterranean Shipping',
-    role: 'Vessel Captain',
-    content: 'Express has been our trusted partner for vessel supplies in Damietta Port. Their 24/7 support and attention to detail make them stand out from the competition.',
-    rating: 5
-  },
-  {
-    name: 'Maria Rodriguez',
-    company: 'Global Cargo Lines',
-    role: 'Operations Manager',
-    content: 'The team at Express understands the urgency of maritime operations. Their quick response time and reliable service have been invaluable to our operations in the region.',
-    rating: 4
-  },
-  {
-    name: 'John Smith',
-    company: 'Blue Horizon Fleet',
-    role: 'Logistics Coordinator',
-    content: 'Professional, efficient, and always willing to go the extra mile. Express has consistently provided top-notch service for all our vessel needs in Damietta.',
-    rating: 5
-  }
-]
-
 const services = [
   {
     title: 'LOGISTICAL SUPPORT SERVICES',
@@ -95,23 +71,15 @@ const services = [
     description: 'ESSENTIAL SUPPLIES AND AMENITIES TO ENSURE COMFORT AND FUNCTIONALITY IN SHIP CABINS.',
     icon: <Package className="w-6 h-6" />
   },
+  {
+    title: 'MARINE PUBLICATIONS, CHARTS & FLAGS',
+    description: 'WE SUPPLY UPDATED MARINE PUBLICATIONS, NAUTICAL CHARTS, AND INTERNATIONAL FLAGS TO SUPPORT SAFE AND COMPLIANT NAVIGATION.',
+    icon: <Flag className="w-6 h-6" />
+  },
 ]
 
 export default function Page() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const testimonialsRef = useRef<HTMLDivElement | null>(null)
-
-  const scrollTestimonials = (direction: 'left' | 'right') => {
-    const container = testimonialsRef.current
-    if (!container) return
-
-    const scrollAmount = container.clientWidth * 0.8
-    container.scrollBy({
-      left: direction === 'left' ? -scrollAmount : scrollAmount,
-      behavior: 'smooth',
-    })
-  }
-
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Header 
@@ -133,29 +101,26 @@ export default function Page() {
               <h2 className="text-3xl md:text-4xl font-bold text-balance">Who We Are</h2>
               <div className="w-20 h-1 bg-accent"></div>
               <p className="text-lg text-foreground/70 leading-relaxed">
-                We are a company specialized in providing ship supply services, firmly believing that every safe maritime journey begins at a port equipped with expertise, commitment, and professionalism.
+                We are a specialized marine and maritime supply company providing reliable, time-critical services to vessels operating across Egypt's major ports.
               </p>
               <p className="text-lg text-foreground/70 leading-relaxed">
-                Our dedicated team ensures that every vessel receives the highest quality supplies and services, maintaining the highest standards of safety and efficiency for your maritime operations.
+                Through continuous experience in delivering marine supplies and integrated logistical solutions, we understand the critical importance of efficiency, precision, and timing in modern maritime operations.
               </p>
               <Button asChild variant="outline" className="mt-4">
                 <Link href="/about">Learn More About Us</Link>
               </Button>
             </div>
-            <div className="w-full h-[300px] relative">
-              <div className="absolute inset-0 flex items-center justify-center  rounded-xl">
-                <img
-                  src="/ship-image.jpeg"
-                  alt="Ship at sea"
-                  className="h-full w-auto max-w-full object-contain p-4"
-                  onError={(e) => {
-                    console.error('Failed to load image:', e);
-                    const target = e.target as HTMLImageElement;
-                    target.alt = 'Image failed to load';
-                  }}
-                />
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/10 rounded-xl"></div>
+            <div className="w-full h-[300px] flex items-center justify-center">
+              <img
+                src="/ship-image.jpeg"
+                alt="Ship at sea"
+                className="h-full w-auto max-w-full object-contain rounded-xl"
+                onError={(e) => {
+                  console.error('Failed to load image:', e);
+                  const target = e.target as HTMLImageElement;
+                  target.alt = 'Image failed to load';
+                }}
+              />
             </div>
           </div>
         </div>
@@ -176,13 +141,14 @@ export default function Page() {
             {features.map((feature, index) => (
               <motion.div
                 key={index}
+                className="h-full"
                 initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.6, ease: 'easeOut', delay: index * 0.05 }}
               >
-                <Card className="p-6 hover:shadow-lg transition-shadow duration-300">
-                  <div className="flex flex-col items-center text-center">
+                <Card className="h-full p-6 hover:shadow-lg transition-shadow duration-300 flex flex-col">
+                  <div className="flex flex-col items-center text-center flex-1">
                     <div className="p-3 bg-accent/10 rounded-full mb-4">
                       {feature.icon}
                     </div>
@@ -274,7 +240,7 @@ export default function Page() {
               </div>
             </div>
             <div className="relative">
-              <div className="bg-muted rounded-xl aspect-[4/5] w-full">
+              <div className="bg-muted rounded-xl aspect-[4/5] w-full md:w-4/5 lg:w-3/4 mx-auto md:ml-auto">
                 <div className="w-full h-full bg-gradient-to-br from-primary/20 to-accent/10 rounded-xl flex items-center justify-center">
                   <img
                     src="/our-mission.jpeg"
@@ -299,93 +265,6 @@ export default function Page() {
                 <p className="text-sm text-foreground/60">Your trusted partner at sea</p>
               </motion.div>
             </div>
-          </div>
-        </div>
-      </AnimatedSection>
-
-      {/* Testimonials Section */}
-      <AnimatedSection
-        className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/20"
-        direction="up"
-      >
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">What Our Clients Say</h2>
-            <p className="text-foreground/60 max-w-2xl mx-auto">Hear from shipping professionals who trust Express for their maritime needs</p>
-            <div className="w-20 h-1 bg-accent mx-auto mt-4"></div>
-          </div>
-          
-          <div className="flex items-center justify-end text-xs sm:text-sm text-foreground/60 mb-3 sm:mb-4">
-            <span className="inline sm:hidden">Swipe to see more</span>
-            <span className="hidden sm:inline">Swipe horizontally to see more testimonials</span>
-            <span className="ml-2">← →</span>
-          </div>
-
-          <div ref={testimonialsRef} className="relative overflow-x-auto pb-4">
-            <div className="flex gap-6 md:gap-8 snap-x snap-mandatory">
-              {testimonials.map((testimonial, index) => (
-                <motion.div
-                  key={index}
-                  className="min-w-[85%] sm:min-w-[60%] md:min-w-[45%] lg:min-w-[32%] snap-center"
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.6, ease: 'easeOut', delay: index * 0.05 }}
-                >
-                  <Card className="p-6 h-full">
-                    <Quote className="w-8 h-8 text-accent/30 mb-4" />
-                    <p className="text-foreground/80 mb-6 italic">"{testimonial.content}"</p>
-                    <div className="mt-auto">
-                      <div className="flex items-center gap-2 mb-1">
-                        {[...Array(testimonial.rating)].map((_, i) => (
-                          <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
-                        ))}
-                      </div>
-                      <h4 className="font-semibold">{testimonial.name}</h4>
-                      <p className="text-sm text-foreground/60">{testimonial.role}, {testimonial.company}</p>
-                    </div>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-            {/* Desktop / tablet overlay arrows */}
-            <button
-              type="button"
-              aria-label="Scroll testimonials left"
-              onClick={() => scrollTestimonials('left')}
-              className="hidden sm:flex items-center justify-center absolute left-2 top-1/2 -translate-y-1/2 h-9 w-9 rounded-full bg-background/80 border border-border shadow-md hover:bg-background text-foreground transition-colors z-10"
-            >
-              <ChevronLeft className="w-4 h-4" />
-            </button>
-            <button
-              type="button"
-              aria-label="Scroll testimonials right"
-              onClick={() => scrollTestimonials('right')}
-              className="hidden sm:flex items-center justify-center absolute right-2 top-1/2 -translate-y-1/2 h-9 w-9 rounded-full bg-background/80 border border-border shadow-md hover:bg-background text-foreground transition-colors z-10"
-            >
-              <ChevronRight className="w-4 h-4" />
-            </button>
-            <div className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-muted/40 to-transparent hidden sm:block" />
-          </div>
-
-          {/* Mobile arrows below slider */}
-          <div className="flex sm:hidden justify-center gap-4 mt-3">
-            <button
-              type="button"
-              aria-label="Scroll testimonials left"
-              onClick={() => scrollTestimonials('left')}
-              className="flex items-center justify-center h-9 w-9 rounded-full bg-background/90 border border-border shadow-md text-foreground"
-            >
-              <ChevronLeft className="w-4 h-4" />
-            </button>
-            <button
-              type="button"
-              aria-label="Scroll testimonials right"
-              onClick={() => scrollTestimonials('right')}
-              className="flex items-center justify-center h-9 w-9 rounded-full bg-background/90 border border-border shadow-md text-foreground"
-            >
-              <ChevronRight className="w-4 h-4" />
-            </button>
           </div>
         </div>
       </AnimatedSection>

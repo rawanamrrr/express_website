@@ -112,53 +112,44 @@ export default function PortsMap() {
     }
   }, [])
 
-  // Smooth zoom behavior on desktop: follow hover with a short delay
-  // and also delay zooming out slightly to avoid rapid in/out flicker
+  // Smooth zoom behavior on desktop: delay zoom-in/out slightly so hover feels stable
   useEffect(() => {
-    if (!isDesktop) return
-
-    const currentId = hoveredPortId
-
-    // If not hovering anything, delay clearing zoom
-    if (!hoveredPortId) {
-      const timeout = window.setTimeout(() => {
-        // Only clear if we still don't have a hovered port
-        if (!hoveredPortId) {
-          setZoomedPortId(null)
-        }
-      }, 120)
-
-      return () => {
-        window.clearTimeout(timeout)
-      }
+    if (!isDesktop) {
+      setZoomedPortId(null)
+      return
     }
 
-    // When hovering a pin, delay setting zoom target
+    // If no port is currently hovered, keep the existing zoomedPortId.
+    // This prevents rapid zoom-out when moving between nearby pins.
+    if (!hoveredPortId) {
+      return
+    }
+
+    // When hovering a pin, delay zooming to avoid jitter when moving between pins
     const timeout = window.setTimeout(() => {
-      if (hoveredPortId === currentId) {
-        setZoomedPortId(currentId)
-      }
-    }, 80)
+      setZoomedPortId(hoveredPortId)
+    }, 160)
 
     return () => {
       window.clearTimeout(timeout)
     }
   }, [hoveredPortId, isDesktop])
 
+
   // Port used for display (label + pin highlight)
-  const displayPortId = hoveredPortId ?? selectedPortId
+  const displayPortId = hoveredPortId ?? zoomedPortId ?? selectedPortId
   const displayPort =
     displayPortId != null
       ? ports.find((port) => port.id === displayPortId) ?? null
       : null
 
   // Port used for zoom
-  const zoomPort = isDesktop
-    ? zoomedPortId != null
-      ? ports.find((port) => port.id === zoomedPortId) ?? null
-      : null
-    : selectedPortId != null
-      ? ports.find((port) => port.id === selectedPortId) ?? null
+  // - Desktop: follow delayed zoom target (based on hover) if any, otherwise selected port
+  // - Mobile: follow selected port (no hover on touch)
+  const zoomTargetId = isDesktop ? (zoomedPortId ?? selectedPortId) : selectedPortId
+  const zoomPort =
+    zoomTargetId != null
+      ? ports.find((port) => port.id === zoomTargetId) ?? null
       : null
 
   const activePortId = displayPortId
@@ -196,7 +187,14 @@ export default function PortsMap() {
 
   return (
     <div className="w-full mx-auto">
-      <div className="relative w-full h-[70vh] min-h-[320px] sm:h-[75vh] sm:min-h-[360px] md:h-[85vh] md:min-h-[440px] max-h-[900px] rounded-xl">
+      <div
+        className="relative w-full h-[70vh] min-h-[320px] sm:h-[75vh] sm:min-h-[360px] md:h-[85vh] md:min-h-[440px] max-h-[900px] rounded-xl"
+        onMouseLeave={() => {
+          setHoveredPortId(null)
+          setZoomedPortId(null)
+          setSelectedPortId(null)
+        }}
+      >
         <motion.div
           className="absolute inset-0"
           style={{ transformOrigin }}
@@ -222,7 +220,6 @@ export default function PortsMap() {
                 type="button"
                 onClick={() => handlePortClick(port.id)}
                 onMouseEnter={() => setHoveredPortId(port.id)}
-                onMouseLeave={() => setHoveredPortId(null)}
                 className="absolute -translate-x-1/2 -translate-y-1/2 focus:outline-none cursor-pointer"
                 style={{ left: `${x}%`, top: `${y}%` }}
               >
@@ -239,14 +236,14 @@ export default function PortsMap() {
 
           {cardPort && cardCoords && cardTopOffset != null && (
             <div
-              className="absolute z-10 -translate-x-1/2 mt-1 w-28 sm:w-40 md:w-48 bg-white/95 text-xs text-black rounded-lg shadow-lg overflow-hidden"
+              className="absolute z-10 -translate-x-1/2 mt-1 w-28 sm:w-36 md:w-40 bg-white/95 text-xs text-black rounded-lg shadow-lg overflow-hidden"
               style={{ left: `${cardCoords.x}%`, top: `${cardTopOffset}%` }}
             >
               <div className="px-3 py-2 border-b border-gray-200">
                 <div className="font-semibold text-xs">{cardPort.name}</div>
                 <div className="text-[10px] text-gray-600">{cardPort.city}</div>
               </div>
-              <div className="w-full h-20 sm:h-32 md:h-40">
+              <div className="w-full h-20 sm:h-28 md:h-32">
                 <a
                   href={cardPort.externalUrl}
                   target="_blank"

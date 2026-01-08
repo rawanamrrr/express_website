@@ -34,7 +34,7 @@ export default function ServicesPage() {
               </span>
             </h1>
             <p className="text-lg lg:text-xl text-foreground/80 mb-12 leading-relaxed max-w-3xl mx-auto">
-              Comprehensive maritime supply and logistics solutions for your vessel needs
+              Our marine supply and logistics services are designed to support vessel operations efficiently while maintaining high standards of quality, safety, and reliability. Each service is delivered with a strong focus on speed, accuracy, and operational continuity.
             </p>
           </div>
         </div>

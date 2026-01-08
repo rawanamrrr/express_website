@@ -1,7 +1,7 @@
 'use client'
 
 import { Card } from '@/components/ui/card'
-import { Truck, Wrench, AlertTriangle, Droplets, Package } from 'lucide-react'
+import { Truck, Wrench, AlertTriangle, Droplets, Package, Flag } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -20,7 +20,7 @@ export default function Services() {
       title: 'SPARE PARTS & TECHNICAL ITEMS',
       description: 'WE\'VE GOT WHAT YOUR VESSEL NEEDS TO STAY RUNNING SMOOTHLY.',
       features: ['Engine parts', 'Technical equipment', 'Maintenance supplies', 'Emergency spares'],
-      image: '/services-3.jpeg',
+      image: '/spare_parts_supply.jpg',
       alt: 'Ship maintenance and technical parts'
     },
     {
@@ -46,6 +46,14 @@ export default function Services() {
       features: ['Bedding & linens', 'Cabin supplies', 'Cleaning products', 'Toiletries'],
       image: '/services-5.jpeg',
       alt: 'Cabin stores and amenities for vessels'
+    },
+    {
+      icon: Flag,
+      title: 'MARINE PUBLICATIONS, CHARTS & FLAGS',
+      description: 'WE SUPPLY UPDATED MARINE PUBLICATIONS, NAUTICAL CHARTS, AND INTERNATIONAL FLAGS TO SUPPORT SAFE AND COMPLIANT NAVIGATION.',
+      features: ['Nautical charts', 'Marine publications', 'Flag sets'],
+      image: '/services-2.jpeg',
+      alt: 'Marine publications, charts and flags for vessels'
     }
   ]
 
@@ -53,9 +61,6 @@ export default function Services() {
     <section className="py-24 sm:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-secondary/20" id="services">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-20">
-          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-primary/10 to-accent/10 backdrop-blur-sm border border-primary/20 px-4 py-2 rounded-full mb-6">
-            <span className="text-sm font-semibold text-primary">Our Expertise</span>
-          </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
             <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
               Our Services
@@ -70,11 +75,11 @@ export default function Services() {
           {services.map((service, index) => (
             <div
               key={index}
-              className="group"
+              className="h-full"
             >
-              <Card className="relative overflow-hidden border-0 bg-gradient-to-br from-card to-card/50 backdrop-blur-sm shadow-luxury hover:shadow-luxury-lg transition-all duration-500 hover:scale-[1.02] flex flex-col">
+              <Card className="h-full relative overflow-hidden border-0 bg-gradient-to-br from-card to-card/50 backdrop-blur-sm shadow-luxury hover:shadow-luxury-lg transition-all duration-500 hover:scale-[1.02] flex flex-col">
                 {/* Image */}
-                <div className="h-48 relative overflow-hidden">
+                <div className="h-56 relative overflow-hidden">
                   <Image
                     src={service.image}
                     alt={service.alt}
@@ -87,8 +92,8 @@ export default function Services() {
                 
                 <div className="relative p-8 flex-1 flex flex-col">
                   {/* Icon */}
-                  <div className="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-luxury -mt-10 z-10 border-4 border-background">
-                    <service.icon className="w-8 h-8 text-primary-foreground" />
+                  <div className="w-16 h-16 bg-accent rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-luxury -mt-10 z-10 border-4 border-background">
+                    <service.icon className="w-8 h-8 text-accent-foreground" />
                   </div>
                   
                   {/* Content */}
@@ -112,7 +117,7 @@ export default function Services() {
                   )}
                   
                   {/* Hover Effect Line */}
-                  <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-accent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+                  <div className="absolute bottom-0 left-0 w-full h-1 bg-accent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
                 </div>
               </Card>
             </div>

@@ -1,15 +1,18 @@
 import type { Metadata, Viewport } from 'next'
-import { GeistSans } from 'geist/font/sans'
+import { Inter } from 'next/font/google'
 import { GeistMono } from 'geist/font/mono'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
-const fontSans = GeistSans;
+const fontSans = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+})
 const fontMono = GeistMono;
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: light)', color: '#ebe9e2' },
     { media: '(prefers-color-scheme: dark)', color: '#000000' },
   ],
 }
@@ -50,7 +53,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable} overflow-x-hidden`}>
+    <html lang="en" className={`${fontSans.variable} ${GeistMono.variable} overflow-x-hidden`}>
       <body className={`font-sans antialiased w-full max-w-[100vw] overflow-x-hidden`}>
         <div className="w-full overflow-x-hidden">
           {children}

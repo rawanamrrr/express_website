@@ -4,8 +4,8 @@
   "description": "Professional vessel supply and maritime logistics services for Damietta Port",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#ffffff",
+  "background_color": "#ebe9e2",
+  "theme_color": "#ebe9e2",
   "icons": [
     {
       "src": "/logo.png",

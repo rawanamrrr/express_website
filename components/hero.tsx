@@ -137,18 +137,18 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="text-4xl md:text-5xl font-bold leading-tight text-balance text-white drop-shadow-lg"
+              className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-balance text-white drop-shadow-lg"
             >
-              Trusted Vessel Supply Solutions for Damietta Port
+              Professional Marine & Maritime Supply Services Across Egypt
             </motion.h1>
 
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="text-lg text-white leading-relaxed drop-shadow-md"
+              className="text-base sm:text-lg text-white leading-relaxed drop-shadow-md"
             >
-              EXPRESS. provides comprehensive maritime logistics and vessel supply services. With years of industry expertise, we ensure your vessels are fully provisioned and ready for every voyage.
+              Delivering efficient marine supply and logistics solutions through years of accumulated experience, ensuring vessels remain on schedule while supporting sustainable maritime operations.
             </motion.p>
 
             <motion.div 
