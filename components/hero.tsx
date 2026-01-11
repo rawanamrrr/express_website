@@ -155,7 +155,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.5 }}
-              className="flex flex-col sm:flex-row gap-4 pt-4 justify-center w-full"
+              className="flex flex-col sm:flex-row gap-6 pt-12 justify-center w-full"
             >
               <motion.button
                 onClick={() => {

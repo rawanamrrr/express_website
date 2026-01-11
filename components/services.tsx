@@ -44,7 +44,7 @@ export default function Services() {
       title: 'CABIN STORES',
       description: 'ESSENTIAL SUPPLIES AND AMENITIES TO ENSURE COMFORT AND FUNCTIONALITY IN SHIP CABINS.',
       features: ['Bedding & linens', 'Cabin supplies', 'Cleaning products', 'Toiletries'],
-      image: '/services-5.jpeg',
+      image: '/cabin-service.jpg',
       alt: 'Cabin stores and amenities for vessels'
     },
     {
@@ -52,7 +52,7 @@ export default function Services() {
       title: 'MARINE PUBLICATIONS, CHARTS & FLAGS',
       description: 'WE SUPPLY UPDATED MARINE PUBLICATIONS, NAUTICAL CHARTS, AND INTERNATIONAL FLAGS TO SUPPORT SAFE AND COMPLIANT NAVIGATION.',
       features: ['Nautical charts', 'Marine publications', 'Flag sets'],
-      image: '/services-2.jpeg',
+      image: '/map-service.jpg',
       alt: 'Marine publications, charts and flags for vessels'
     }
   ]
