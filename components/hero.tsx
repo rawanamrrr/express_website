@@ -62,7 +62,7 @@ export default function Hero() {
       <motion.div 
         className="absolute inset-0 bg-cover bg-no-repeat bg-[center_30%] sm:hidden"
         style={{
-          backgroundImage: 'url(/cargo-ship-in-damietta-port-mobile.png)',
+          backgroundImage: 'url(/cargo-ship-in-damietta-port-mobile.jpeg)',
         }}
         initial={{ scale: 1.03 }}
         animate={{ 
@@ -78,7 +78,7 @@ export default function Hero() {
       <motion.div 
         className="absolute inset-0 bg-cover bg-no-repeat bg-[center_30%] sm:bg-center hidden sm:block"
         style={{
-          backgroundImage: 'url(/cargo-ship-in-damietta-port.png)',
+          backgroundImage: 'url(/cargo-ship-in-damietta-port.jpeg)',
         }}
         initial={{ scale: 1.03 }}
         animate={{ 
