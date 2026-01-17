@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Menu, X, Clock, Phone, Twitter, Facebook, Youtube, Instagram, Linkedin, Mail } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
@@ -20,25 +20,91 @@ export default function Header({ mobileMenuOpen, setMobileMenuOpen, currentPage 
     { label: 'Contact', href: '/contact' },
   ]
 
+  const [desktopPinned, setDesktopPinned] = useState(false)
+  const [stickyStart, setStickyStart] = useState<number | null>(null)
+  const whiteBarRef = useRef<HTMLDivElement | null>(null)
+
+  useEffect(() => {
+    const computeStickyStart = () => {
+      if (typeof window === 'undefined') return
+      if (window.innerWidth < 768) {
+        setStickyStart(null)
+        setDesktopPinned(false)
+        return
+      }
+
+      const el = whiteBarRef.current
+      if (!el) return
+
+      const rect = el.getBoundingClientRect()
+      const scrollY = window.scrollY || window.pageYOffset
+      setStickyStart(scrollY + rect.top)
+    }
+
+    computeStickyStart()
+    window.addEventListener('resize', computeStickyStart)
+
+    return () => {
+      window.removeEventListener('resize', computeStickyStart)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (stickyStart === null) return
+
+    const handleScroll = () => {
+      if (window.innerWidth < 768) {
+        setDesktopPinned(false)
+        return
+      }
+
+      setDesktopPinned(window.scrollY >= stickyStart)
+    }
+
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [stickyStart])
+
   return (
-    <header className="relative z-50">
-      <div className="sticky top-0 z-50 bg-[#0f2f46] text-white">
+    <>
+      <div className="fixed top-0 left-0 right-0 z-50 bg-[#0f2f46] text-white md:static">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between py-3">
+          <div className="flex items-center justify-between h-20 md:h-24">
             <div className="flex items-center gap-4">
-              <Link href="/" className="flex items-center h-12">
-                <img src="/logo.png" alt="Express INC. Logo" className="h-full w-auto object-contain" />
+              <Link href="/" className="flex items-center h-full">
+                <img src="/logo.png" alt="Express INC. Logo" className="h-28 md:h-35 w-auto object-contain" />
               </Link>
-              <div className="hidden md:flex items-center gap-2 text-sm">
-                <Clock className="w-4 h-4 text-[#18b6c8]" />
-                <span className="text-[#18b6c8]">We are Available</span>
-                <span className="text-white">24/7 for You</span>
-              </div>
             </div>
             <div className="flex items-center gap-6">
-              <div className="hidden md:flex items-center gap-3 pr-6 border-r border-white/20">
-                <Phone className="w-4 h-4 text-[#18b6c8]" />
-                <a href="tel:+201227497373" className="text-sm font-semibold hover:text-[#f8b21a]">+201227497373</a>
+              <div className="hidden md:flex items-center gap-6 pr-6 border-r border-white/20">
+                {/* Phone block */}
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center justify-center rounded-full bg-[#18b6c8]/15 p-2">
+                    <Phone className="w-4 h-4 text-[#18b6c8]" />
+                  </div>
+                  <div className="flex flex-col leading-tight">
+                    <span className="text-xs uppercase tracking-wide text-white/70">Call us now</span>
+                    <a
+                      href="tel:+201016218082"
+                      className="text-sm font-semibold text-[#f8b21a] hover:text-[#f8b21a]"
+                    >
+                      +201016218082
+                    </a>
+                  </div>
+                </div>
+
+                {/* Availability block */}
+                <div className="flex items-center gap-2 text-right text-xs">
+                  <Clock className="w-4 h-4 text-[#18b6c8]" />
+                  <div className="flex flex-col leading-tight">
+                    <span className="uppercase tracking-wide text-[#18b6c8]">We are Available</span>
+                    <span className="text-white">24/7 for You</span>
+                  </div>
+                </div>
               </div>
               <div className="hidden sm:flex items-center gap-3">
                 <Link href="#" aria-label="Twitter" className="hover:text-[#f8b21a]"><Twitter className="w-4 h-4" /></Link>
@@ -48,13 +114,28 @@ export default function Header({ mobileMenuOpen, setMobileMenuOpen, currentPage 
                 <Link href="#" aria-label="LinkedIn" className="hover:text-[#f8b21a]"><Linkedin className="w-4 h-4" /></Link>
                 <Link href="mailto:info@example.com" aria-label="Email" className="hover:text-[#f8b21a]"><Mail className="w-4 h-4" /></Link>
               </div>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="md:hidden hover:bg-slate-900/10"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              >
+                {mobileMenuOpen ? (
+                  <X className="w-6 h-6 text-white" />
+                ) : (
+                  <Menu className="w-6 h-6 text-white" />
+                )}
+              </Button>
             </div>
           </div>
         </div>
       </div>
-      <div className="bg-gradient-to-b from-white to-gray-100 border-b border-gray-200">
+      <div
+        ref={whiteBarRef}
+        className={`bg-gradient-to-b from-white to-gray-100 border-b border-gray-200 ${mobileMenuOpen ? 'pt-20 md:pt-0' : ''} ${desktopPinned ? 'md:fixed md:top-0 md:left-0 md:right-0 md:z-40' : 'md:static'}`}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative flex items-center justify-between h-14">
+          <div className="relative hidden h-14 items-center justify-between md:flex">
             {/* Logo */}
             <div className="md:hidden">
               <Link href="/" className="flex items-center h-10">
@@ -79,24 +160,14 @@ export default function Header({ mobileMenuOpen, setMobileMenuOpen, currentPage 
             <div className="flex items-center gap-3 ml-auto">
               {/* CTA Button - Desktop */}
               <Link href="/contact">
-                <Button variant="outline" size="default" className="hidden md:inline-flex uppercase font-extrabold tracking-wide bg-[#f8b21a] hover:bg-[#e5a20c] text-black border-0 shadow-md">
+                <Button
+                  variant="outline"
+                  size="default"
+                  className="hidden md:inline-flex uppercase font-extrabold tracking-wide bg-[#f58d13] hover:bg-[#e67e00] text-white border-0 shadow-md"
+                >
                   LIVE CHAT
                 </Button>
               </Link>
-
-              {/* Mobile Menu Button */}
-              <Button
-                variant="ghost"
-                size="icon"
-                className="md:hidden hover:bg-slate-900/5"
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              >
-                {mobileMenuOpen ? (
-                  <X className="w-6 h-6 text-slate-900" />
-                ) : (
-                  <Menu className="w-6 h-6 text-slate-900" />
-                )}
-              </Button>
             </div>
           </div>
 
@@ -114,7 +185,11 @@ export default function Header({ mobileMenuOpen, setMobileMenuOpen, currentPage 
                 </Link>
               ))}
               <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
-                <Button variant="outline" size="lg" className="w-full mt-6 uppercase font-extrabold tracking-wide bg-[#f8b21a] hover:bg-[#e5a20c] text-black border-0 shadow-md">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="w-full mt-6 uppercase font-extrabold tracking-wide bg-[#f58d13] hover:bg-[#e67e00] text-white border-0 shadow-md"
+                >
                   LIVE CHAT
                 </Button>
               </Link>
@@ -122,6 +197,6 @@ export default function Header({ mobileMenuOpen, setMobileMenuOpen, currentPage 
           )}
         </div>
       </div>
-    </header>
+    </>
   )
 }

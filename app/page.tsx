@@ -88,6 +88,8 @@ export default function Page() {
         currentPage="home"
       />
       
+      <main className="pt-20 md:pt-0">
+
       <Hero />
 
       {/* Who We Are Section */}
@@ -308,6 +310,7 @@ export default function Page() {
       </AnimatedSection>
       
       <Footer />
+      </main>
     </div>
   )
 }

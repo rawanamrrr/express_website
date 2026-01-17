@@ -23,7 +23,7 @@ export default function AboutPage() {
         currentPage="about"
       />
       
-      <main className="pt-16 lg:pt-24">
+      <main className="pt-20 md:pt-0">
         {/* Enhanced Hero Section */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
           <div className="text-center max-w-4xl mx-auto">

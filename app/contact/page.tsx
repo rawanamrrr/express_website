@@ -24,7 +24,7 @@ export default function ContactPage() {
         currentPage="contact"
       />
       
-      <main className="pt-16 lg:pt-24">
+      <main className="pt-20 md:pt-0">
         {/* Enhanced Contact Container */}
         <div className="relative">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
