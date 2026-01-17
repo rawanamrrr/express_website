@@ -2,10 +2,10 @@
 
 import { useState } from 'react'
 import Header from '@/components/header'
-import Services from '@/components/services'
+import Products from '@/components/products'
 import Footer from '@/components/footer'
 
-export default function ServicesPage() {
+export default function ProductsPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
@@ -17,43 +17,40 @@ export default function ServicesPage() {
         <div className="absolute bottom-1/4 -left-10 w-72 h-72 bg-foreground/5 rounded-full blur-3xl" />
       </div>
 
-      <Header 
+      <Header
         mobileMenuOpen={mobileMenuOpen}
         setMobileMenuOpen={setMobileMenuOpen}
-        currentPage="services"
+        currentPage="products"
       />
-      
+
       <main className="pt-20 md:pt-0">
-        {/* Enhanced Hero Section */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
           <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-balance mb-4 leading-tight">
+            <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 leading-tight">
               Our{' '}
               <span className="bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">
-                Services
+                Products
               </span>
             </h1>
             <div className="h-1 w-20 bg-accent mb-8 mx-auto" />
-            <p className="text-lg lg:text-xl text-foreground/80 mb-12 leading-relaxed max-w-3xl mx-auto">
-              Our marine supply and logistics services are designed to support vessel operations efficiently while maintaining high standards of quality, safety, and reliability. Each service is delivered with a strong focus on speed, accuracy, and operational continuity.
+            <p className="text-lg lg:text-xl text-foreground/80 mb-6 leading-relaxed">
+              As a general ship supplier, we provide a wide range of high-quality stores and provisions
+              to support vessels both in port and at sea.
             </p>
+            <ul className="list-disc pl-6 space-y-2 text-foreground/80 text-left inline-block">
+              <li>All of our stores follow IMPA &amp; ISSA Catalog guidelines.</li>
+              <li>Special Manufacturing requests are available on demand.</li>
+            </ul>
           </div>
         </div>
 
-        {/* Enhanced Services Container */}
         <div className="relative">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="bg-foreground/5 rounded-3xl border border-foreground/10 p-8 lg:p-12 backdrop-blur-sm">
-              <Services />
-            </div>
+            <Products />
           </div>
-          
-          {/* Subtle Decorative Elements */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-4 w-24 h-1 bg-gradient-to-r from-transparent via-foreground/20 to-transparent rounded-full" />
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-4 w-24 h-1 bg-gradient-to-r from-transparent via-foreground/20 to-transparent rounded-full" />
         </div>
       </main>
-      
+
       <Footer />
     </div>
   )

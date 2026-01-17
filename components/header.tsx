@@ -16,7 +16,7 @@ export default function Header({ mobileMenuOpen, setMobileMenuOpen, currentPage 
     { label: 'Home', href: '/' },
     { label: 'About', href: '/about' },
     { label: 'Services', href: '/services' },
-    { label: 'Products', href: '/services' },
+    { label: 'Products', href: '/products' },
     { label: 'Contact', href: '/contact' },
   ]
 
@@ -159,7 +159,11 @@ export default function Header({ mobileMenuOpen, setMobileMenuOpen, currentPage 
 
             <div className="flex items-center gap-3 ml-auto">
               {/* CTA Button - Desktop */}
-              <Link href="/contact">
+              <a
+                href="https://wa.me/2001097178002"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Button
                   variant="outline"
                   size="default"
@@ -167,7 +171,7 @@ export default function Header({ mobileMenuOpen, setMobileMenuOpen, currentPage 
                 >
                   LIVE CHAT
                 </Button>
-              </Link>
+              </a>
             </div>
           </div>
 
@@ -184,7 +188,12 @@ export default function Header({ mobileMenuOpen, setMobileMenuOpen, currentPage 
                   {item.label}
                 </Link>
               ))}
-              <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
+              <a
+                href="https://wa.me/2001097178002"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMobileMenuOpen(false)}
+              >
                 <Button
                   variant="outline"
                   size="lg"
@@ -192,7 +201,7 @@ export default function Header({ mobileMenuOpen, setMobileMenuOpen, currentPage 
                 >
                   LIVE CHAT
                 </Button>
-              </Link>
+              </a>
             </div>
           )}
         </div>

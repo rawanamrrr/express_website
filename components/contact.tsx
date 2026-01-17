@@ -122,9 +122,13 @@ export default function Contact({ onNavigate }: ContactProps) {
     <section className="py-12 px-4 sm:px-6 lg:px-8 bg-muted/30" id="contact">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-balance mb-4">
-            Contact Us
+          <h2 className="text-4xl md:text-5xl font-bold text-balance mb-4 leading-tight">
+            Contact{' '}
+            <span className="bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">
+              Us
+            </span>
           </h2>
+          <div className="h-1 w-20 bg-accent mb-8 mx-auto" />
           <p className="text-lg text-foreground/60 max-w-2xl mx-auto">
             Get in touch with our team for quotes, inquiries, or support. We're here to help 24/7.
           </p>

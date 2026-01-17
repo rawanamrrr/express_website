@@ -27,12 +27,13 @@ export default function AboutPage() {
         {/* Enhanced Hero Section */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
           <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-balance mb-6 leading-tight">
+            <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-balance mb-4 leading-tight">
               About{' '}
               <span className="bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">
                 Us
               </span>
             </h1>
+            <div className="h-1 w-20 bg-accent mb-8 mx-auto" />
             <p className="text-lg lg:text-xl text-foreground/80 mb-12 leading-relaxed max-w-3xl mx-auto">
               Learn more about Express and our commitment to excellence
             </p>
