@@ -47,34 +47,25 @@ const features = [
 
 const services = [
   {
-    title: 'LOGISTICAL SUPPORT SERVICES',
-    description: 'WE HANDLE ALL THE LOGISTICS YOUR SHIP NEEDS AT THE PORT OR OUT AT SEA.',
-    icon: <Truck className="w-6 h-6" />
+    key: 'ship-chandlers',
+    title: 'SHIP CHANDLERS',
+    description: 'Relying on our large storage facilities and widespread warehouses, we are a reliable supplier to many other ship chandlers.',
+    image: '/services-2.jpeg',
+    alt: 'Ship chandlers operations'
   },
   {
-    title: 'SPARE PARTS & TECHNICAL ITEMS',
-    description: 'WE\'VE GOT WHAT YOUR VESSEL NEEDS TO STAY RUNNING SMOOTHLY.',
-    icon: <Wrench className="w-6 h-6" />
+    key: 'cruise-vessels',
+    title: 'CRUISE VESSELS',
+    description: 'The international diversity and wide range of needs a cruise ship has is well understood by our team, and we deliver a flawless supply experience to ensure guest satisfaction.',
+    image: '/services-4.jpeg',
+    alt: 'Cruise vessel at sea'
   },
   {
-    title: 'MARITIME EMERGENCY SERVICES',
-    description: 'WHEN SOMETHING UNEXPECTED HAPPENS, WE\'RE READY TO STEP IN FAST.',
-    icon: <AlertTriangle className="w-6 h-6" />
-  },
-  {
-    title: 'FRESH PROVISION ',
-    description: 'WE DELIVER QUALITY FOOD SUPPLIES AND CLEAN DRINKING WATER TO KEEP YOUR CREW WELL-STOCKED AND READY.',
-    icon: <Droplets className="w-6 h-6" />
-  },
-  {
-    title: 'CABIN STORES',
-    description: 'ESSENTIAL SUPPLIES AND AMENITIES TO ENSURE COMFORT AND FUNCTIONALITY IN SHIP CABINS.',
-    icon: <Package className="w-6 h-6" />
-  },
-  {
-    title: 'MARINE PUBLICATIONS, CHARTS & FLAGS',
-    description: 'WE SUPPLY UPDATED MARINE PUBLICATIONS, NAUTICAL CHARTS, AND INTERNATIONAL FLAGS TO SUPPORT SAFE AND COMPLIANT NAVIGATION.',
-    icon: <Flag className="w-6 h-6" />
+    key: 'merchant-vessels',
+    title: 'MERCHANT VESSELS',
+    description: 'Our experience supplying merchant vessels in all shapes and sizes means we understand the versatile needs of multinational fleets and can cater to all tastes and needs.',
+    image: '/cargo-ship-in-damietta-port.jpeg',
+    alt: 'Merchant vessel with containers'
   },
 ]
 
@@ -171,7 +162,7 @@ export default function Page() {
       >
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Services</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">What We Serve</h2>
             <p className="text-foreground/60 max-w-2xl mx-auto">WE PROVIDE ALL THE ESSENTIALS SHIPS NEED QUICKLY, RELIABLY, AND WHENEVER THEY NEED IT.</p>
             <div className="w-20 h-1 bg-accent mx-auto mt-4"></div>
           </div>
@@ -186,15 +177,15 @@ export default function Page() {
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.6, ease: 'easeOut', delay: index * 0.05 }}
               >
-                <div className="h-full p-6 bg-card border border-border rounded-lg hover:border-accent/50 transition-colors">
-                  <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center mb-4 text-accent group-hover:bg-accent group-hover:text-white transition-colors">
-                    {service.icon}
+                <div className="h-full bg-card border border-border rounded-lg overflow-hidden hover:border-accent/50 transition-colors">
+                  <div className="relative h-40 sm:h-44">
+                    <img src={service.image} alt={service.alt} className="w-full h-full object-cover" />
+                    <div className="absolute inset-0 bg-black/10" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-                  <p className="text-foreground/70 mb-4">{service.description}</p>
-                  <Button variant="link" className="px-0 text-accent hover:text-accent/80 transition-colors" asChild>
-                    <Link href="/services">Learn more →</Link>
-                  </Button>
+                  <div className="p-6">
+                    <h3 className="text-xl font-semibold mb-2 uppercase">{service.title}</h3>
+                    <p className="text-foreground/70">{service.description}</p>
+                  </div>
                 </div>
               </motion.div>
             ))}
