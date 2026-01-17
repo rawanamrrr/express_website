@@ -71,7 +71,7 @@ export default function Header({ mobileMenuOpen, setMobileMenuOpen, currentPage 
 
   return (
     <>
-      <div className="fixed top-0 left-0 right-0 z-50 bg-[#F2EEE5] text-[#003293] md:static">
+      <div className="fixed top-0 left-0 right-0 z-50 bg-white text-[#003293] md:static">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20 md:h-24">
             <div className="flex items-center gap-4">
