@@ -25,7 +25,7 @@ export default function ServicesPage() {
       
       <main className="pt-20 md:pt-0">
         {/* Enhanced Hero Section */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 mb-16">
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-balance mb-4 leading-tight">
               Our{' '}

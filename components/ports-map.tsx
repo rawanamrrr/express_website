@@ -166,9 +166,7 @@ export default function PortsMap() {
 
   const activeCoords = zoomPort ? getPortCoords(zoomPort) : null
 
-  const transformOrigin = activeCoords
-    ? `${activeCoords.x}% ${activeCoords.y}%`
-    : defaultOrigin
+  const transformOrigin = defaultOrigin
 
   // Port used for the info card
   // - Desktop: follow the active (hovered/selected) port so it appears on hover
@@ -199,9 +197,9 @@ export default function PortsMap() {
           className="absolute inset-0"
           style={{ transformOrigin }}
           animate={{
-            scale: zoomPort ? 3.2 : 1.5,
-            x: zoomPort ? 0 : 40,
-            y: zoomPort ? 0 : -20,
+            scale: 1.5,
+            x: 40,
+            y: -20,
           }}
           transition={{ duration: 0.5, ease: 'easeOut' }}
         >

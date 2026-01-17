@@ -50,21 +50,21 @@ const services = [
     key: 'ship-chandlers',
     title: 'SHIP CHANDLERS',
     description: 'Relying on our large storage facilities and widespread warehouses, we are a reliable supplier to many other ship chandlers.',
-    image: '/services-2.jpeg',
+    image: '/ship-chandler.jpg',
     alt: 'Ship chandlers operations'
   },
   {
     key: 'cruise-vessels',
     title: 'CRUISE VESSELS',
     description: 'The international diversity and wide range of needs a cruise ship has is well understood by our team, and we deliver a flawless supply experience to ensure guest satisfaction.',
-    image: '/services-4.jpeg',
+    image: '/cruise.jpg',
     alt: 'Cruise vessel at sea'
   },
   {
     key: 'merchant-vessels',
     title: 'MERCHANT VESSELS',
     description: 'Our experience supplying merchant vessels in all shapes and sizes means we understand the versatile needs of multinational fleets and can cater to all tastes and needs.',
-    image: '/cargo-ship-in-damietta-port.jpeg',
+    image: '/merchant.jpg',
     alt: 'Merchant vessel with containers'
   },
 ]
@@ -171,20 +171,30 @@ export default function Page() {
             {services.map((service, index) => (
               <motion.div
                 key={index}
-                className="group"
+                className="group cursor-pointer"
                 initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40 }}
                 whileInView={{ opacity: 1, x: 0 }}
+                whileHover={{ y: -8, scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
                 viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.6, ease: 'easeOut', delay: index * 0.05 }}
+                transition={{ duration: 0.3, ease: 'easeOut', delay: index * 0.05 }}
               >
-                <div className="h-full bg-card border border-border rounded-lg overflow-hidden hover:border-accent/50 transition-colors">
-                  <div className="relative h-40 sm:h-44">
-                    <img src={service.image} alt={service.alt} className="w-full h-full object-cover" />
-                    <div className="absolute inset-0 bg-black/10" />
+                <div className="h-full rounded-xl overflow-hidden border border-border bg-gradient-to-b from-card to-card/95 shadow-sm transition-all duration-300 group-hover:border-accent/60 group-hover:shadow-luxury group-active:border-accent/80 group-active:shadow-luxury">
+                  <div className="relative h-40 sm:h-44 overflow-hidden">
+                    <img
+                      src={service.image}
+                      alt={service.alt}
+                      className="w-full h-full object-cover transform group-hover:scale-105 group-active:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent opacity-80 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-300" />
                   </div>
                   <div className="p-6">
-                    <h3 className="text-xl font-semibold mb-2 uppercase">{service.title}</h3>
-                    <p className="text-foreground/70">{service.description}</p>
+                    <h3 className="text-xl font-semibold mb-2 uppercase tracking-wide group-hover:text-accent group-active:text-accent transition-colors">
+                      {service.title}
+                    </h3>
+                    <p className="text-sm text-foreground/70 leading-relaxed group-hover:text-foreground group-active:text-foreground transition-colors">
+                      {service.description}
+                    </p>
                   </div>
                 </div>
               </motion.div>
@@ -262,19 +272,37 @@ export default function Page() {
         </div>
       </AnimatedSection>
 
-      {/* Ports Map Section */}
+      {/* Ports Coverage Section */}
+      <AnimatedSection
+        className="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-slate-950"
+        direction="up"
+      >
+        <div className="absolute inset-0">
+          <img
+            src="/port-image.jpg"
+            alt="Egypt ports background"
+            className="w-full h-full object-cover opacity-40"
+          />
+          <div className="absolute inset-0 bg-black/70" />
+        </div>
+        <div className="relative max-w-7xl mx-auto">
+          <div className="text-center text-white space-y-6 max-w-3xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold mb-1">Ports We Serve</h2>
+            <div className="w-20 h-1 bg-accent mx-auto" />
+            <p className="text-base md:text-lg text-white/90 leading-relaxed">
+              Alexandria Port, El Dekheila Port, Damietta Port, Port Said Port, East Port Said Port, Ein El Sokhna Port.
+              <br />
+            </p>
+          </div>
+        </div>
+      </AnimatedSection>
+
+      {/* Ports Map Section (under dark band) */}
       <AnimatedSection
         className="pt-4 pb-20 px-4 sm:px-6 lg:px-8 bg-background"
         direction="up"
       >
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-1">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Port Coverage</h2>
-            <p className="text-foreground/60 max-w-2xl mx-auto">
-              Explore the key ports where we operate. Hover or click on a pin to zoom to that location.
-            </p>
-            <div className="w-20 h-1 bg-accent mx-auto mt-4"></div>
-          </div>
           <PortsMap />
         </div>
       </AnimatedSection>
@@ -290,7 +318,12 @@ export default function Page() {
             Join the many maritime professionals who trust Express for their vessel supply and support needs in Damietta Port.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary" className="text-foreground" asChild>
+            <Button
+              size="lg"
+              variant="outline"
+              className="px-8 bg-[#f58d13] hover:bg-[#e67e00] text-white border-0 hover:border-0 shadow-md hover:shadow-lg"
+              asChild
+            >
               <Link href="/contact">Get a Quote</Link>
             </Button>
             <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10" asChild>
