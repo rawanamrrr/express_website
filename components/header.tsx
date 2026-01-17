@@ -71,7 +71,7 @@ export default function Header({ mobileMenuOpen, setMobileMenuOpen, currentPage 
 
   return (
     <>
-      <div className="fixed top-0 left-0 right-0 z-50 bg-[#0f2f46] text-white md:static">
+      <div className="fixed top-0 left-0 right-0 z-50 bg-[#F2EEE5] text-[#003293] md:static">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20 md:h-24">
             <div className="flex items-center gap-4">
@@ -83,11 +83,11 @@ export default function Header({ mobileMenuOpen, setMobileMenuOpen, currentPage 
               <div className="hidden md:flex items-center gap-6 pr-6 border-r border-white/20">
                 {/* Phone block */}
                 <div className="flex items-center gap-3">
-                  <div className="flex items-center justify-center rounded-full bg-[#18b6c8]/15 p-2">
-                    <Phone className="w-4 h-4 text-[#18b6c8]" />
+                  <div className="flex items-center justify-center rounded-full bg-[#f58d13]/15 p-2">
+                    <Phone className="w-4 h-4 text-[#f58d13]" />
                   </div>
                   <div className="flex flex-col leading-tight">
-                    <span className="text-xs uppercase tracking-wide text-white/70">Call us now</span>
+                    <span className="text-xs uppercase tracking-wide text-[#003293]/70">Call us now</span>
                     <a
                       href="tel:+201016218082"
                       className="text-sm font-semibold text-[#f8b21a] hover:text-[#f8b21a]"
@@ -99,10 +99,10 @@ export default function Header({ mobileMenuOpen, setMobileMenuOpen, currentPage 
 
                 {/* Availability block */}
                 <div className="flex items-center gap-2 text-right text-xs">
-                  <Clock className="w-4 h-4 text-[#18b6c8]" />
+                  <Clock className="w-4 h-4 text-[#f58d13]" />
                   <div className="flex flex-col leading-tight">
-                    <span className="uppercase tracking-wide text-[#18b6c8]">We are Available</span>
-                    <span className="text-white">24/7 for You</span>
+                    <span className="uppercase tracking-wide text-[#f58d13]">We are Available</span>
+                    <span className="text-[#003293]">24/7 for You</span>
                   </div>
                 </div>
               </div>
@@ -121,9 +121,9 @@ export default function Header({ mobileMenuOpen, setMobileMenuOpen, currentPage 
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               >
                 {mobileMenuOpen ? (
-                  <X className="w-6 h-6 text-white" />
+                  <X className="w-6 h-6 text-[#003293]" />
                 ) : (
-                  <Menu className="w-6 h-6 text-white" />
+                  <Menu className="w-6 h-6 text-[#003293]" />
                 )}
               </Button>
             </div>
@@ -132,7 +132,7 @@ export default function Header({ mobileMenuOpen, setMobileMenuOpen, currentPage 
       </div>
       <div
         ref={whiteBarRef}
-        className={`bg-gradient-to-b from-white to-gray-100 border-b border-gray-200 ${mobileMenuOpen ? 'pt-20 md:pt-0' : ''} ${desktopPinned ? 'md:fixed md:top-0 md:left-0 md:right-0 md:z-40' : 'md:static'}`}
+        className={`bg-gradient-to-b from-[#003293] to-[#011d54] border-b border-[#011d54] ${mobileMenuOpen ? 'pt-20 md:pt-0' : ''} ${desktopPinned ? 'md:fixed md:top-0 md:left-0 md:right-0 md:z-40' : 'md:static'}`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative hidden h-14 items-center justify-between md:flex">
@@ -149,10 +149,10 @@ export default function Header({ mobileMenuOpen, setMobileMenuOpen, currentPage 
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="relative text-sm md:text-base font-semibold uppercase tracking-wide text-slate-900 transition-all duration-300 hover:text-[#0f2f46] group pr-6 mr-6 border-r border-black/10 last:pr-0 last:mr-0 last:border-r-0"
+                  className="relative text-sm md:text-white font-semibold uppercase tracking-wide text-slate-900 transition-all duration-300 hover:text-[#f58d13] group pr-6 mr-6 border-r border-black/10 last:pr-0 last:mr-0 last:border-r-0"
                 >
                   {item.label}
-                  <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#0f2f46] to-[#18b6c8] group-hover:w-full transition-all duration-300" />
+                  <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#f58d13] to-[#18b6c8] group-hover:w-full transition-all duration-300" />
                 </Link>
               ))}
             </nav>
