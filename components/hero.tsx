@@ -1,10 +1,10 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import { Ship } from 'lucide-react'
+import { Ship, ChevronLeft, ChevronRight } from 'lucide-react'
 import { AnimatedSection } from '@/components/animated-section'
-import { motion, useAnimation } from 'framer-motion'
-import { useEffect } from 'react'
+import { motion, useAnimation, AnimatePresence } from 'framer-motion'
+import { useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 
 const StatsCounter = ({ value, label }: { value: number; label: string }) => {
@@ -51,6 +51,21 @@ export default function Hero() {
     }
   }
 
+  const slides = [
+    '/cargo-ship-in-damietta-port.jpeg',
+    '/merchant.jpg',
+    '/cruise.jpg',
+    '/port-image.jpg',
+    '/ship-image.jpeg',
+  ]
+  const [current, setCurrent] = useState(0)
+  const nextSlide = () => setCurrent((i) => (i + 1) % slides.length)
+  const prevSlide = () => setCurrent((i) => (i - 1 + slides.length) % slides.length)
+  useEffect(() => {
+    const id = setInterval(() => setCurrent((i) => (i + 1) % slides.length), 6000)
+    return () => clearInterval(id)
+  }, [slides.length])
+
   return (
     <AnimatedSection
       className="relative min-h-screen w-full overflow-hidden flex items-center justify-center px-4 sm:px-6 lg:px-8 text-center"
@@ -58,39 +73,29 @@ export default function Hero() {
       direction="up"
     >
       {/* Dark overlay for text readability */}
-      {/* Animated Background Image */}
-      <motion.div 
-        className="absolute inset-0 bg-cover bg-no-repeat bg-[center_30%] sm:hidden"
-        style={{
-          backgroundImage: 'url(/cargo-ship-in-damietta-port-mobile.jpeg)',
-        }}
-        initial={{ scale: 1.03 }}
-        animate={{ 
-          scale: 1,
-          transition: { 
-            duration: 10,
-            ease: 'easeInOut',
-            repeat: Infinity,
-            repeatType: 'reverse'
-          }
-        }}
-      />
-      <motion.div 
-        className="absolute inset-0 bg-cover bg-no-repeat bg-[center_30%] sm:bg-center hidden sm:block"
-        style={{
-          backgroundImage: 'url(/cargo-ship-in-damietta-port.jpeg)',
-        }}
-        initial={{ scale: 1.03 }}
-        animate={{ 
-          scale: 1,
-          transition: { 
-            duration: 10,
-            ease: 'easeInOut',
-            repeat: Infinity,
-            repeatType: 'reverse'
-          }
-        }}
-      />
+      {/* Animated Background Image Carousel */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={`mobile-${current}`}
+          className="absolute inset-0 bg-cover bg-no-repeat bg-[center_30%] sm:hidden"
+          style={{ backgroundImage: `url(${slides[current]})` }}
+          initial={{ opacity: 0, scale: 1.03 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.8, ease: 'easeInOut' }}
+        />
+      </AnimatePresence>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={`desktop-${current}`}
+          className="absolute inset-0 bg-cover bg-no-repeat bg-[center_30%] sm:bg-center hidden sm:block"
+          style={{ backgroundImage: `url(${slides[current]})` }}
+          initial={{ opacity: 0, scale: 1.03 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.8, ease: 'easeInOut' }}
+        />
+      </AnimatePresence>
       
       {/* Animated Overlay */}
       <motion.div 
@@ -108,6 +113,8 @@ export default function Hero() {
       />
 
       <div className="max-w-7xl w-full mx-auto relative z-10 overflow-hidden">
+        <button onClick={prevSlide} aria-label="Previous slide" className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 rounded-full bg-white/20 border border-white/30 text-white hover:bg-white/30 backdrop-blur-sm z-20"><ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" /></button>
+        <button onClick={nextSlide} aria-label="Next slide" className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 rounded-full bg-white/20 border border-white/30 text-white hover:bg-white/30 backdrop-blur-sm z-20"><ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" /></button>
         <div className="flex flex-col items-center justify-center">
           {/* Centered Content */}
           <div className="space-y-6 max-w-3xl">

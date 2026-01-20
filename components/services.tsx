@@ -1,140 +1,79 @@
 'use client'
 
-import { Card } from '@/components/ui/card'
-import { Truck, Wrench, AlertTriangle, Droplets, Package, Flag } from 'lucide-react'
 import Image from 'next/image'
-import Link from 'next/link'
+import { motion } from 'framer-motion'
 
 export default function Services() {
   const services = [
     {
-      icon: Truck,
-      title: 'LOGISTICAL SUPPORT SERVICES',
-      description: 'WE HANDLE ALL THE LOGISTICS YOUR SHIP NEEDS AT THE PORT OR OUT AT SEA.',
-      features: ['Port logistics', 'Cargo handling', 'Documentation', 'Customs clearance'],
+      number: '1',
+      title: 'GENERAL SHIP SUPPLIER',
       image: '/services-2.jpeg',
-      alt: 'Port operations and logistics services'
+      alt: 'General ship supplier'
     },
     {
-      icon: Wrench,
-      title: 'SPARE PARTS & TECHNICAL ITEMS',
-      description: 'WE\'VE GOT WHAT YOUR VESSEL NEEDS TO STAY RUNNING SMOOTHLY.',
-      features: ['Engine parts', 'Technical equipment', 'Maintenance supplies', 'Emergency spares'],
-      image: '/spare_parts_supply.jpg',
-      alt: 'Ship maintenance and technical parts'
-    },
-    {
-      icon: AlertTriangle,
-      title: 'MARITIME EMERGENCY SERVICES',
-      description: 'WHEN SOMETHING UNEXPECTED HAPPENS, WE\'RE READY TO STEP IN FAST.',
-      features: ['24/7 response', 'Emergency repairs', 'Technical assistance', 'Rapid deployment'],
+      number: '2',
+      title: 'INSPECTION OF ALL LIFE-SAVING EQUIPMENT AND SERVICING LIFE RAFTS',
       image: '/services-4.jpeg',
-      alt: 'Emergency response services at sea'
+      alt: 'Life saving equipment inspection'
     },
     {
-      icon: Droplets,
-      title: 'FRESH PROVISION',
-      description: 'WE DELIVER QUALITY FOOD SUPPLIES AND CLEAN DRINKING WATER TO KEEP YOUR CREW WELL-STOCKED AND READY.',
-      features: ['Fresh provisions', 'Beverages', 'Dry stores', 'Potable water'],
-      image: '/food-service.jpg',
-      alt: 'Fresh provision supply for vessels'
+      number: '3',
+      title: 'ELECTRONICS; INSTALLING AND MAINTAINING OF DIFFERENT NAVIGATIONAL DEVICES',
+      image: '/cabin.jpeg',
+      alt: 'Electronics and navigational devices'
     },
     {
-      icon: Package,
-      title: 'CABIN STORES',
-      description: 'ESSENTIAL SUPPLIES AND AMENITIES TO ENSURE COMFORT AND FUNCTIONALITY IN SHIP CABINS.',
-      features: ['Bedding & linens', 'Cabin supplies', 'Cleaning products', 'Toiletries'],
-      image: '/cabin-service.jpg',
-      alt: 'Cabin stores and amenities for vessels'
+      number: '4',
+      title: 'MAINTENANCE, REPAIR AND RE-WINDING DIFFERENT ELECTRIC MOTORS',
+      image: '/Electric Motor.jpg',
+      alt: 'Electric motor maintenance'
     },
     {
-      icon: Flag,
-      title: 'MARINE PUBLICATIONS, CHARTS & FLAGS',
-      description: 'WE SUPPLY UPDATED MARINE PUBLICATIONS, NAUTICAL CHARTS, AND INTERNATIONAL FLAGS TO SUPPORT SAFE AND COMPLIANT NAVIGATION.',
-      features: ['Nautical charts', 'Marine publications', 'Flag sets'],
-      image: '/map-service.jpg',
-      alt: 'Marine publications, charts and flags for vessels'
+      number: '5',
+      title: 'GARBAGE & SLUDGE DISPOSAL',
+      image: '/Garbage & sludge disposal.jpg',
+      alt: 'Garbage and sludge disposal'
+    },
+    {
+      number: '6',
+      title: 'PARCEL CUSTOMS CLEARANCE & SAFEKEEPING OF SHIP SPARE PARTS, TO BE DELIVERED TO THE VESSELS AT THE REQUIRED TIME AND LOCATION.',
+      image: '/Explained.jpg',
+      alt: 'Parcel customs clearance and safekeeping'
     }
   ]
 
   return (
-    <section className="py-24 sm:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-secondary/20" id="services">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              Our Services
-            </span>
-          </h2>
-          <p className="text-xl text-foreground/70 max-w-4xl mx-auto leading-relaxed">
-            WE PROVIDE ALL THE ESSENTIALS SHIPS NEED QUICKLY, RELIABLY, AND WHENEVER THEY NEED IT.
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-8">
+    <section className="py-12 sm:py-16" id="services">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
           {services.map((service, index) => (
-            <div
+            <motion.div
               key={index}
-              className="h-full"
+              className="group cursor-pointer"
+              initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              whileHover={{ y: -8, scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.3, ease: 'easeOut', delay: index * 0.05 }}
             >
-              <Card className="h-full relative overflow-hidden border-0 bg-gradient-to-br from-card to-card/50 backdrop-blur-sm shadow-luxury hover:shadow-luxury-lg transition-all duration-500 hover:scale-[1.02] flex flex-col">
-                {/* Image */}
-                <div className="h-56 relative overflow-hidden">
+              <div className="space-y-3">
+                <div className="relative w-full h-48 sm:h-56 lg:h-60 overflow-hidden border-4 border-white shadow">
                   <Image
                     src={service.image}
                     alt={service.alt}
                     fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover transform group-hover:scale-105 group-active:scale-105 transition-transform duration-500"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 </div>
-                
-                <div className="relative p-8 flex-1 flex flex-col">
-                  {/* Icon */}
-                  <div className="w-16 h-16 bg-accent rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-luxury -mt-10 z-10 border-4 border-background">
-                    <service.icon className="w-8 h-8 text-accent-foreground" />
-                  </div>
-                  
-                  {/* Content */}
-                  <h3 className="text-2xl font-bold mb-4 text-foreground group-hover:text-primary transition-colors duration-300">
-                    {service.title}
-                  </h3>
-                  <p className="text-foreground/70 leading-relaxed mb-6">
-                    {service.description}
-                  </p>
-                  
-                  {/* Features */}
-                  {service.features && (
-                    <ul className="space-y-2 mt-auto">
-                      {service.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-center gap-2 text-sm text-foreground/60">
-                          <div className="w-1.5 h-1.5 bg-accent rounded-full" />
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                  
-                  {/* Hover Effect Line */}
-                  <div className="absolute bottom-0 left-0 w-full h-1 bg-accent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
-                </div>
-              </Card>
-            </div>
+                <h3 className="text-center font-semibold uppercase tracking-wide text-foreground text-sm sm:text-base leading-snug">
+                  {service.number}- {service.title}
+                </h3>
+              </div>
+            </motion.div>
           ))}
-        </div>
-
-        <div className="mt-16 bg-primary text-primary-foreground rounded-lg p-8 text-center">
-          <h3 className="text-2xl font-bold mb-4">Need Something Specific?</h3>
-          <p className="mb-6 max-w-2xl mx-auto">
-            We customize solutions for unique maritime requirements. Contact our team to discuss your specific needs.
-          </p>
-          <Link 
-            href="/contact"
-            className="inline-block bg-accent text-accent-foreground px-8 py-3 rounded font-semibold hover:bg-accent/90 transition-colors"
-          >
-            Contact Us
-          </Link>
         </div>
       </div>
     </section>
