@@ -132,7 +132,7 @@ export default function Header({ mobileMenuOpen, setMobileMenuOpen, currentPage 
       </div>
       <div
         ref={whiteBarRef}
-        className={`bg-gradient-to-b from-[#003293] to-[#011d54] border-b border-[#011d54] ${mobileMenuOpen ? 'pt-20 md:pt-0' : ''} ${desktopPinned ? 'md:fixed md:top-0 md:left-0 md:right-0 md:z-40' : 'md:static'}`}
+        className={`bg-gradient-to-b from-[#003293] to-[#011d54] border-b border-[#011d54] ${mobileMenuOpen ? 'fixed inset-x-0 top-0 z-40 pt-20 md:pt-0' : ''} ${desktopPinned ? 'md:fixed md:top-0 md:left-0 md:right-0 md:z-40' : 'md:static'}`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative hidden h-14 items-center justify-between md:flex">
@@ -182,7 +182,7 @@ export default function Header({ mobileMenuOpen, setMobileMenuOpen, currentPage 
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="block px-4 py-3 text-lg font-semibold rounded-lg text-slate-800 hover:text-[#0f2f46] hover:bg-slate-900/5 transition-all duration-300"
+                  className="block px-4 py-3 text-lg font-semibold rounded-lg text-white hover:text-[#f58d13] hover:bg-slate-900/5 transition-all duration-300"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.label}

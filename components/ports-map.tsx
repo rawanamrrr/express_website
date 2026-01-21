@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 
 type Port = {
@@ -22,7 +22,7 @@ const ports: Port[] = [
     city: 'Alexandria, Egypt',
     xMobile: 58,
     yMobile: 28.7,
-    xDesktop: 53.8,
+    xDesktop: 52.5,
     yDesktop: 19,
     imageSrc: '/alexandria-port.png',
     externalUrl:
@@ -34,7 +34,7 @@ const ports: Port[] = [
     city: 'El Dekheila, Egypt',
     xMobile: 57,
     yMobile: 29,
-    xDesktop: 53.4,
+    xDesktop: 51.8,
     yDesktop: 19.2,
     imageSrc: '/dekhila-port.png',
     externalUrl:
@@ -46,7 +46,7 @@ const ports: Port[] = [
     city: 'Damietta, Egypt',
     xMobile: 59.5,
     yMobile: 28.6,
-    xDesktop: 54.5,
+    xDesktop: 54,
     yDesktop: 19,
     imageSrc: '/damietta-port.png',
     externalUrl:
@@ -81,7 +81,7 @@ const ports: Port[] = [
     name: 'Ein El Sokhna Port',
     city: 'Ain Sokhna, Egypt',
     xMobile: 60.5,
-    yMobile: 30.5,
+    yMobile: 31.5,
     xDesktop: 55,
     yDesktop: 21.5,
     imageSrc: '/sokhna-port.png',
@@ -97,6 +97,12 @@ export default function PortsMap() {
 
   const [isDesktop, setIsDesktop] = useState(false)
 
+  const mapContainerRef = useRef<HTMLDivElement | null>(null)
+  const [containerSize, setContainerSize] = useState<{ width: number; height: number } | null>(
+    null,
+  )
+  const [mapSize, setMapSize] = useState<{ width: number; height: number } | null>(null)
+
   useEffect(() => {
     const mediaQuery = window.matchMedia('(min-width: 768px)')
 
@@ -109,6 +115,29 @@ export default function PortsMap() {
 
     return () => {
       mediaQuery.removeEventListener('change', updateMatch)
+    }
+  }, [])
+
+  useEffect(() => {
+    const updateSize = () => {
+      if (!mapContainerRef.current) return
+      const rect = mapContainerRef.current.getBoundingClientRect()
+      setContainerSize({ width: rect.width, height: rect.height })
+    }
+
+    updateSize()
+    window.addEventListener('resize', updateSize)
+
+    return () => {
+      window.removeEventListener('resize', updateSize)
+    }
+  }, [])
+
+  useEffect(() => {
+    const img = new window.Image()
+    img.src = '/africa-map.png'
+    img.onload = () => {
+      setMapSize({ width: img.naturalWidth, height: img.naturalHeight })
     }
   }, [])
 
@@ -164,6 +193,43 @@ export default function PortsMap() {
       ? { x: port.xDesktop, y: port.yDesktop }
       : { x: port.xMobile, y: port.yMobile }
 
+  const convertMapToContainer = (x: number, y: number) => {
+    const isMobileView = !isDesktop
+
+    const xWithOffset = isMobileView ? x - 0.5 : x + 5.5
+    const yWithOffset = isMobileView ? y - 9.5 : y
+
+    if (!containerSize || !mapSize) {
+      return { left: `${xWithOffset}%`, top: `${yWithOffset}%` }
+    }
+
+    const containerRatio = containerSize.width / containerSize.height
+    const mapRatio = mapSize.width / mapSize.height
+
+    let renderWidth = containerSize.width
+    let renderHeight = containerSize.height
+    let offsetX = 0
+    let offsetY = 0
+
+    if (containerRatio > mapRatio) {
+      renderHeight = containerSize.height
+      renderWidth = renderHeight * mapRatio
+      offsetX = (containerSize.width - renderWidth) / 2
+    } else {
+      renderWidth = containerSize.width
+      renderHeight = renderWidth / mapRatio
+      offsetY = (containerSize.height - renderHeight) / 2
+    }
+
+    const pxX = offsetX + (xWithOffset / 100) * renderWidth
+    const pxY = offsetY + (yWithOffset / 100) * renderHeight
+
+    const left = (pxX / containerSize.width) * 100
+    const top = (pxY / containerSize.height) * 100
+
+    return { left: `${left}%`, top: `${top}%` }
+  }
+
   const activeCoords = zoomPort ? getPortCoords(zoomPort) : null
 
   const transformOrigin = defaultOrigin
@@ -177,10 +243,14 @@ export default function PortsMap() {
       ? ports.find((port) => port.id === cardPortId) ?? null
       : null
 
-  const cardCoords = cardPort ? getPortCoords(cardPort) : null
-  const cardTopOffset =
-    cardCoords != null
-      ? cardCoords.y + (isDesktop ? 4 : 1)
+  const cardMapCoords = cardPort ? getPortCoords(cardPort) : null
+  const cardMapTop =
+    cardMapCoords != null
+      ? cardMapCoords.y + (isDesktop ? 4 : 1)
+      : null
+  const cardPosition =
+    cardMapCoords != null && cardMapTop != null
+      ? convertMapToContainer(cardMapCoords.x, cardMapTop)
       : null
 
   return (
@@ -194,6 +264,7 @@ export default function PortsMap() {
         }}
       >
         <motion.div
+          ref={mapContainerRef}
           className="absolute inset-0"
           style={{ transformOrigin }}
           animate={{
@@ -211,6 +282,7 @@ export default function PortsMap() {
           {ports.map((port) => {
             const isActive = activePortId === port.id
             const { x, y } = getPortCoords(port)
+            const { left, top } = convertMapToContainer(x, y)
 
             return (
               <button
@@ -219,7 +291,7 @@ export default function PortsMap() {
                 onClick={() => handlePortClick(port.id)}
                 onMouseEnter={() => setHoveredPortId(port.id)}
                 className="absolute -translate-x-1/2 -translate-y-1/2 focus:outline-none cursor-pointer"
-                style={{ left: `${x}%`, top: `${y}%` }}
+                style={{ left, top }}
               >
                 <div className="flex flex-col items-center gap-1">
                   <span
@@ -232,10 +304,10 @@ export default function PortsMap() {
             )
           })}
 
-          {cardPort && cardCoords && cardTopOffset != null && (
+          {cardPort && cardPosition && (
             <div
               className="absolute z-10 -translate-x-1/2 mt-1 w-28 sm:w-36 md:w-40 bg-white/95 text-xs text-black rounded-lg shadow-lg overflow-hidden"
-              style={{ left: `${cardCoords.x}%`, top: `${cardTopOffset}%` }}
+              style={{ left: cardPosition.left, top: cardPosition.top }}
             >
               <div className="px-3 py-2 border-b border-gray-200">
                 <div className="font-semibold text-xs">{cardPort.name}</div>

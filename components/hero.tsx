@@ -3,7 +3,7 @@
 import { Button } from '@/components/ui/button'
 import { Ship, ChevronLeft, ChevronRight } from 'lucide-react'
 import { AnimatedSection } from '@/components/animated-section'
-import { motion, useAnimation, AnimatePresence } from 'framer-motion'
+import { motion, useAnimation } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 
@@ -73,29 +73,15 @@ export default function Hero() {
       direction="up"
     >
       {/* Dark overlay for text readability */}
-      {/* Animated Background Image Carousel */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={`mobile-${current}`}
-          className="absolute inset-0 bg-cover bg-no-repeat bg-[center_30%] sm:hidden"
-          style={{ backgroundImage: `url(${slides[current]})` }}
-          initial={{ opacity: 0, scale: 1.03 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.8, ease: 'easeInOut' }}
-        />
-      </AnimatePresence>
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={`desktop-${current}`}
-          className="absolute inset-0 bg-cover bg-no-repeat bg-[center_30%] sm:bg-center hidden sm:block"
-          style={{ backgroundImage: `url(${slides[current]})` }}
-          initial={{ opacity: 0, scale: 1.03 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.8, ease: 'easeInOut' }}
-        />
-      </AnimatePresence>
+      {/* Static Background Image (no animation) */}
+      <div
+        className="absolute inset-0 bg-cover bg-no-repeat bg-[center_30%] sm:hidden"
+        style={{ backgroundImage: `url(${slides[current]})` }}
+      />
+      <div
+        className="absolute inset-0 bg-cover bg-no-repeat bg-[center_30%] sm:bg-center hidden sm:block"
+        style={{ backgroundImage: `url(${slides[current]})` }}
+      />
       
       {/* Animated Overlay */}
       <motion.div 
