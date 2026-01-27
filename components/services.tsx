@@ -8,13 +8,13 @@ export default function Services() {
     {
       number: '1',
       title: 'GENERAL SHIP SUPPLIER',
-      image: '/services-2.jpeg',
+      image: 'General.jpeg',
       alt: 'General ship supplier'
     },
     {
       number: '2',
       title: 'INSPECTION OF ALL LIFE-SAVING EQUIPMENT AND SERVICING LIFE RAFTS',
-      image: '/services-4.jpeg',
+      image: 'Inspecti.jpeg',
       alt: 'Life saving equipment inspection'
     },
     {
@@ -32,7 +32,7 @@ export default function Services() {
     {
       number: '5',
       title: 'GARBAGE & SLUDGE DISPOSAL',
-      image: '/Garbage & sludge disposal.jpg',
+      image: '/Garabge.jpeg',
       alt: 'Garbage and sludge disposal'
     },
     {

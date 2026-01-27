@@ -41,78 +41,78 @@ export default function Contact({ onNavigate }: ContactProps) {
   }
 
   const contactInfo = [
-    { 
-      icon: MapPin, 
-      label: 'Location', 
-      value: 'DAMIETTA PORT, EGYPT', 
+    {
+      icon: MapPin,
+      label: 'Location',
+      value: 'DAMIETTA PORT, EGYPT',
       href: 'https://maps.app.goo.gl/pFRY1wxe52LzyPgE8',
       target: '_blank',
       rel: 'noopener noreferrer'
     },
-    { 
-      icon: Mail, 
-      label: 'Email', 
-      value: 'INFO@EXPRESSSERVICESS.COM', 
-      href: 'mailto:INFO@EXPRESSSERVICESS.COM' 
+    {
+      icon: Mail,
+      label: 'Email',
+      value: 'INFO@EXPRESSSERVICESS.COM',
+      href: 'mailto:INFO@EXPRESSSERVICESS.COM'
     },
-    { 
-      icon: Phone, 
-      label: 'Phone', 
-      value: '01016218082', 
-      href: 'tel:01016218082' 
+    {
+      icon: Phone,
+      label: 'Phone',
+      value: '01016218082',
+      href: 'tel:01016218082'
     },
-    { 
-      icon: MessageCircle, 
-      label: 'WhatsApp', 
-      value: '(+20) 01097178002', 
+    {
+      icon: MessageCircle,
+      label: 'WhatsApp',
+      value: '(+20) 01097178002',
       href: 'https://wa.me/2001097178002',
       target: '_blank',
       rel: 'noopener noreferrer'
     },
-    { 
-      icon: 'globe', 
-      label: 'Website', 
-      value: 'WWW.EXPRESSSERVICESS.COM', 
+    {
+      icon: 'globe',
+      label: 'Website',
+      value: 'WWW.EXPRESSSERVICESS.COM',
       href: 'https://www.expressservicess.com',
       target: '_blank',
       rel: 'noopener noreferrer'
     },
-    { 
-      icon: Facebook, 
-      label: 'Facebook', 
-      value: 'Express Inc', 
+    {
+      icon: Facebook,
+      label: 'Facebook',
+      value: 'Express Inc',
       href: 'https://web.facebook.com/profile.php?id=61575205654731',
       target: '_blank',
       rel: 'noopener noreferrer'
     },
-    { 
-      icon: Twitter, 
-      label: 'X (Twitter)', 
-      value: '@exp08011', 
+    {
+      icon: Twitter,
+      label: 'X (Twitter)',
+      value: '@exp08011',
       href: 'https://x.com/exp08011',
       target: '_blank',
       rel: 'noopener noreferrer'
     },
-    { 
-      icon: Instagram, 
-      label: 'Instagram', 
-      value: '@express__inc', 
+    {
+      icon: Instagram,
+      label: 'Instagram',
+      value: '@express__inc',
       href: 'https://www.instagram.com/express__inc/',
       target: '_blank',
       rel: 'noopener noreferrer'
     },
-    { 
-      icon: Youtube, 
-      label: 'YouTube', 
-      value: 'Express Inc', 
+    {
+      icon: Youtube,
+      label: 'YouTube',
+      value: 'Express Inc',
       href: 'https://www.youtube.com/@expressinc-q7g',
       target: '_blank',
       rel: 'noopener noreferrer'
     },
-    { 
-      icon: Music2, 
-      label: 'TikTok', 
-      value: '@express_inc', 
+    {
+      icon: Music2,
+      label: 'TikTok',
+      value: '@express_inc',
       href: 'https://www.tiktok.com/@express_inc',
       target: '_blank',
       rel: 'noopener noreferrer'
@@ -148,8 +148,8 @@ export default function Contact({ onNavigate }: ContactProps) {
                   >
                     {typeof info.icon === 'string' ? (
                       info.icon === 'globe' ? <Globe className="w-6 h-6 text-accent flex-shrink-0 mt-1" /> :
-                      info.icon === 'instagram' ? <Instagram className="w-6 h-6 text-accent flex-shrink-0 mt-1" /> :
-                      null
+                        info.icon === 'instagram' ? <Instagram className="w-6 h-6 text-accent flex-shrink-0 mt-1" /> :
+                          null
                     ) : (
                       <Icon className="w-6 h-6 text-accent flex-shrink-0 mt-1" />
                     )}
@@ -284,7 +284,7 @@ export default function Contact({ onNavigate }: ContactProps) {
             </Card>
           </div>
         </div>
-        
+
         {/* Map Section */}
         <div className="mt-16">
           <h2 className="text-3xl font-bold text-center mb-6">Our Location</h2>

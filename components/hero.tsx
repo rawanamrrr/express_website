@@ -3,7 +3,7 @@
 import { Button } from '@/components/ui/button'
 import { Ship, ChevronLeft, ChevronRight } from 'lucide-react'
 import { AnimatedSection } from '@/components/animated-section'
-import { motion, useAnimation } from 'framer-motion'
+import { motion, useAnimation, AnimatePresence } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 
@@ -24,14 +24,14 @@ const StatsCounter = ({ value, label }: { value: number; label: string }) => {
   }, [controls, inView])
 
   return (
-    <motion.div 
+    <motion.div
       ref={ref}
       initial={{ opacity: 0, y: 20 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5 }}
       className="text-center"
     >
-      <motion.p 
+      <motion.p
         animate={controls}
         className="text-3xl font-bold text-white drop-shadow-lg"
       >
@@ -52,19 +52,26 @@ export default function Hero() {
   }
 
   const slides = [
-    '/cargo-ship-in-damietta-port.jpeg',
-    '/merchant.jpg',
-    '/cruise.jpg',
-    '/port-image.jpg',
-    '/ship-image.jpeg',
+    '/hero 1.jpeg',
+    '/hero 2.mp4',
+    '/hero 3.jpeg',
+    '/hero 4.jpeg',
+    '/hero 5.jpeg',
   ]
   const [current, setCurrent] = useState(0)
   const nextSlide = () => setCurrent((i) => (i + 1) % slides.length)
   const prevSlide = () => setCurrent((i) => (i - 1 + slides.length) % slides.length)
+  
+
+  const currentSlide = slides[current]
+  const isVideo = currentSlide.endsWith('.mp4') || currentSlide.endsWith('.webm') || currentSlide.endsWith('.ogg')
+  
+  // Advance based on media type: 5s for images, 8s for videos
   useEffect(() => {
-    const id = setInterval(() => setCurrent((i) => (i + 1) % slides.length), 6000)
-    return () => clearInterval(id)
-  }, [slides.length])
+    const duration = isVideo ? 8000 : 5000
+    const id = setTimeout(() => setCurrent((i) => (i + 1) % slides.length), duration)
+    return () => clearTimeout(id)
+  }, [currentSlide, isVideo, slides.length])
 
   return (
     <AnimatedSection
@@ -73,18 +80,54 @@ export default function Hero() {
       direction="up"
     >
       {/* Dark overlay for text readability */}
-      {/* Static Background Image (no animation) */}
-      <div
-        className="absolute inset-0 bg-cover bg-no-repeat bg-[center_30%] sm:hidden"
-        style={{ backgroundImage: `url(${slides[current]})` }}
-      />
-      <div
-        className="absolute inset-0 bg-cover bg-no-repeat bg-[center_30%] sm:bg-center hidden sm:block"
-        style={{ backgroundImage: `url(${slides[current]})` }}
-      />
-      
+      {/* Background layer with animated crossfade/zoom */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentSlide}
+          initial={{ opacity: 0, scale: 1.02 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 1.02 }}
+          transition={{ duration: 0.8, ease: 'easeInOut' }}
+          className="absolute inset-0"
+        >
+          {isVideo ? (
+            <>
+              <video
+                className="absolute inset-0 w-full h-full object-cover object-[center_30%] sm:hidden"
+                src={currentSlide}
+                autoPlay
+                muted
+                loop
+                playsInline
+                aria-hidden="true"
+              />
+              <video
+                className="absolute inset-0 w-full h-full object-cover hidden sm:block"
+                src={currentSlide}
+                autoPlay
+                muted
+                loop
+                playsInline
+                aria-hidden="true"
+              />
+            </>
+          ) : (
+            <>
+              <div
+                className="absolute inset-0 bg-cover bg-no-repeat bg-[center_30%] sm:hidden"
+                style={{ backgroundImage: `url("${encodeURI(currentSlide)}")` }}
+              />
+              <div
+                className="absolute inset-0 bg-cover bg-no-repeat bg-[center_30%] sm:bg-center hidden sm:block"
+                style={{ backgroundImage: `url("${encodeURI(currentSlide)}")` }}
+              />
+            </>
+          )}
+        </motion.div>
+      </AnimatePresence>
+
       {/* Animated Overlay */}
-      <motion.div 
+      <motion.div
         className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/80 pointer-events-none"
         initial={{ opacity: 0.9 }}
         animate={{
@@ -104,7 +147,7 @@ export default function Hero() {
         <div className="flex flex-col items-center justify-center">
           {/* Centered Content */}
           <div className="space-y-6 max-w-3xl">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
@@ -126,7 +169,7 @@ export default function Hero() {
               <span className="text-sm font-semibold text-white">Maritime Excellence</span>
             </motion.div>
 
-            <motion.h1 
+            <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
@@ -135,7 +178,7 @@ export default function Hero() {
               Professional Marine & Maritime Supply Services Across Egypt
             </motion.h1>
 
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
@@ -144,7 +187,7 @@ export default function Hero() {
               Delivering efficient marine supply and logistics solutions through years of accumulated experience, ensuring vessels remain on schedule while supporting sustainable maritime operations.
             </motion.p>
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.5 }}
@@ -157,7 +200,7 @@ export default function Hero() {
                 }}
                 className="px-8 py-3 text-base font-semibold text-white rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl cursor-pointer pointer-events-auto relative z-10"
                 style={{ backgroundColor: '#f58d13' }}
-                whileHover={{ 
+                whileHover={{
                   scale: 1.05,
                   backgroundColor: '#e67e00',
                   boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)'
@@ -185,7 +228,7 @@ export default function Hero() {
         </div>
 
         {/* Stats */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
