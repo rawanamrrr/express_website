@@ -52,11 +52,16 @@ export default function Hero() {
   }
 
   const slides = [
-    '/hero 1.jpeg',
-    '/hero 2.mp4',
-    '/hero 3.jpeg',
-    '/hero 4.jpeg',
-    '/hero 5.jpeg',
+    '/hero 1.jpg',
+    '/hero 2.jpg',
+    '/hero 3.jpg',
+    '/hero 4.jpg',
+    '/hero 5.jpg',
+    '/hero 6.jpg',
+    '/hero 7.jpg',
+    '/hero 8.jpg',
+    '/hero 9.jpeg',
+    '/hero 10.jpg',
   ]
   const [current, setCurrent] = useState(0)
   const nextSlide = () => setCurrent((i) => (i + 1) % slides.length)
