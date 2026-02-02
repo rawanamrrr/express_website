@@ -8,27 +8,27 @@ export default function About() {
     { 
       icon: Award, 
       title: 'Quality', 
-      description: 'We consistently strive to provide products and services of the highest quality, ensuring customer satisfaction and the efficiency of maritime operations.' 
+      description: 'Reliable products and services that keep your vessel running smoothly.' 
     },
     { 
       icon: Shield, 
       title: 'Safety', 
-      description: 'Safety is our top priority, whether in the supply of materials or the execution of operations, in accordance with global maritime standards.' 
+      description: 'We follow clear maritime safety standards in every delivery.' 
     },
     { 
       icon: CheckCircle, 
       title: 'Commitment', 
-      description: 'We are dedicated to meeting delivery deadlines and honoring all contractual obligations.' 
+      description: 'We honor our agreements and work to meet every deadline.' 
     },
     { 
       icon: Zap, 
       title: 'Flexibility and Innovation', 
-      description: 'We respond quickly and flexibly to market changes and our clients\' needs, continuously adopting the latest technologies in the maritime sector to deliver smart service solutions.' 
+      description: 'We adapt quickly to your needs and use modern tools to improve service.' 
     },
     { 
       icon: Handshake, 
       title: 'Transparency and Integrity', 
-      description: 'We believe that trust is built on clarity, and we uphold transparency in our dealings to foster long-term relationships with our partners.' 
+      description: 'We communicate clearly and act honestly to build long-term partnerships.' 
     }
   ];
 
@@ -43,40 +43,28 @@ export default function About() {
               <div>
                 <h3 className="text-2xl font-semibold mb-2">WHO WE ARE</h3>
                 <p>
-                  We are a professional marine and maritime supply company with extensive experience in supporting vessel operations through integrated supply and logistics services.
-                </p>
-                <p>
-                  Our expertise has been built through years of continuous involvement in the maritime sector, allowing us to deliver reliable solutions that meet the operational demands of modern vessels.
+                  We are a marine and maritime supply company providing reliable, practical support for daily vessel operations.
                 </p>
               </div>
 
               <div>
                 <h3 className="text-2xl font-semibold mb-2">EXPERIENCE &amp; EXPERTISE</h3>
                 <p>
-                  With accumulated experience in marine supply operations, we provide practical and effective logistical solutions tailored to each vessels operational requirements.
-                </p>
-                <p>
-                  Our operational knowledge enables us to respond quickly, manage complex supply needs, and maintain consistent service quality across multiple ports.
+                  Our team has solid experience in marine supply across ports, handling complex requests quickly and consistently.
                 </p>
               </div>
 
               <div>
                 <h3 className="text-2xl font-semibold mb-2">LOGISTICS &amp; TIME MANAGEMENT</h3>
                 <p>
-                  Our primary objective is to minimize service and supply lead times in order to protect vessel schedules and operational timelines.
-                </p>
-                <p>
-                  By optimizing logistics coordination and reducing unnecessary delays, we help vessels maintain planned port stays, reduce downtime, and avoid schedule disruptions.
+                  We plan and deliver supplies efficiently to protect your schedule and cut waiting time.
                 </p>
               </div>
 
               <div>
                 <h3 className="text-2xl font-semibold mb-2">SUSTAINABILITY &amp; ENVIRONMENT</h3>
                 <p>
-                  We are committed to supporting sustainable maritime operations and protecting marine life.
-                </p>
-                <p>
-                  Reducing service time at port directly contributes to lower fuel consumption, decreased emissions, and reduced marine pollution. Through efficient supply execution, we actively support environmentally responsible maritime practices.
+                  Efficient service and shorter port stays help reduce fuel use, emissions, and impact on the sea.
                 </p>
               </div>
             </div>
@@ -121,7 +109,7 @@ export default function About() {
         <div className="bg-muted/30 rounded-lg p-12 text-center">
           <h3 className="text-3xl font-bold mb-4">Our Team</h3>
           <p className="text-lg text-foreground/70 max-w-2xl mx-auto mb-8">
-            Our dedicated team of maritime professionals brings decades of combined experience. We're trained in the latest industry standards and committed to providing exceptional service.
+            Our team brings practical maritime experience and up-to-date training, focused on reliable service.
           </p>
           <div className="grid md:grid-cols-3 gap-6">
             <div className="bg-background rounded p-6">
