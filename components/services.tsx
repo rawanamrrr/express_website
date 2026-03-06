@@ -64,7 +64,7 @@ export default function Services() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent opacity-80 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-300" />
                 </div>
                 <div className="px-4 py-3">
-                  <h3 className="text-xl font-semibold mb-2 uppercase tracking-wide group-hover:text-accent group-active:text-accent transition-colors text-center">
+                  <h3 className="text-xl font-semibold mb-2 uppercase tracking-wide text-center">
                     {service.number}- {service.title}
                   </h3>
                 </div>

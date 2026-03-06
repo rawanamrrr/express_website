@@ -183,10 +183,10 @@ export default function Page() {
                       <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent opacity-80 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-300" />
                     </div>
                     <div className="p-6">
-                      <h3 className="text-xl font-semibold mb-2 uppercase tracking-wide group-hover:text-accent group-active:text-accent transition-colors">
+                      <h3 className="text-xl font-semibold mb-2 uppercase tracking-wide">
                         {service.title}
                       </h3>
-                      <p className="text-sm text-foreground/70 leading-relaxed group-hover:text-foreground group-active:text-foreground transition-colors">
+                      <p className="text-sm text-foreground/70 leading-relaxed">
                         {service.description}
                       </p>
                     </div>
