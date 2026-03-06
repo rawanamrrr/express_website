@@ -89,10 +89,10 @@ export default function Header({ mobileMenuOpen, setMobileMenuOpen, currentPage 
                   <div className="flex flex-col leading-tight">
                     <span className="text-xs uppercase tracking-wide text-[#003293]/70">Call us now</span>
                     <a
-                      href="tel:+201016218082"
+                      href="tel:+201027227142"
                       className="text-sm font-semibold text-[#f8b21a] hover:text-[#f8b21a]"
                     >
-                      +201016218082
+                      +201027227142
                     </a>
                   </div>
                 </div>

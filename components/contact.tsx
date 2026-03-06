@@ -58,13 +58,13 @@ export default function Contact({ onNavigate }: ContactProps) {
     {
       icon: Phone,
       label: 'Phone',
-      value: '01016218082',
-      href: 'tel:01016218082'
+      value: '+201027227142',
+      href: 'tel:+201027227142'
     },
     {
       icon: MessageCircle,
       label: 'WhatsApp',
-      value: '(+20) 01097178002',
+      value: '+201097178002',
       href: 'https://wa.me/2001097178002',
       target: '_blank',
       rel: 'noopener noreferrer'

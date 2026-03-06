@@ -48,15 +48,9 @@ export default function Services() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <motion.div
+            <div
               key={index}
               className="group cursor-pointer"
-              initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              whileHover={{ y: -8, scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.3, ease: 'easeOut', delay: index * 0.05 }}
             >
               <div className="h-full rounded-xl overflow-hidden border border-border bg-gradient-to-b from-card to-card/95 shadow-sm transition-all duration-300 group-hover:border-accent/60 group-hover:shadow-luxury group-active:border-accent/80 group-active:shadow-luxury">
                 <div className="relative h-40 sm:h-44 overflow-hidden">
@@ -64,7 +58,7 @@ export default function Services() {
                     src={service.image}
                     alt={service.alt}
                     fill
-                    className="w-full h-full object-cover transform group-hover:scale-105 group-active:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent opacity-80 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-300" />
@@ -75,7 +69,7 @@ export default function Services() {
                   </h3>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

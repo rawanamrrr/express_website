@@ -73,267 +73,261 @@ export default function Page() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <Header 
+      <Header
         mobileMenuOpen={mobileMenuOpen}
         setMobileMenuOpen={setMobileMenuOpen}
         currentPage="home"
       />
-      
+
       <main className="pt-20 md:pt-0">
 
-      <Hero />
+        <Hero />
 
-      {/* Who We Are Section */}
-      <AnimatedSection
-        className="py-16 px-4 sm:px-6 lg:px-8 bg-background"
-        direction="up"
-      >
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <h2 className="text-3xl md:text-4xl font-bold text-balance">Who We Are</h2>
-              <div className="w-20 h-1 bg-accent"></div>
-              <p className="text-lg text-foreground/70 leading-relaxed">
-                We are a specialized marine and maritime supply company providing reliable, time-critical services to vessels operating across Egypt's major ports.
-              </p>
-              <p className="text-lg text-foreground/70 leading-relaxed">
-                Through continuous experience in delivering marine supplies and integrated logistical solutions, we understand the critical importance of efficiency, precision, and timing in modern maritime operations.
-              </p>
-              <Button asChild variant="outline" className="mt-4">
-                <Link href="/about">Learn More About Us</Link>
+        {/* Who We Are Section */}
+        <AnimatedSection
+          className="py-16 px-4 sm:px-6 lg:px-8 bg-background"
+          direction="up"
+        >
+          <div className="max-w-7xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div className="space-y-6">
+                <h2 className="text-3xl md:text-4xl font-bold text-balance">Who We Are</h2>
+                <div className="w-20 h-1 bg-accent"></div>
+                <p className="text-lg text-foreground/70 leading-relaxed">
+                  We are a specialized marine and maritime supply company providing reliable, time-critical services to vessels operating across Egypt's major ports.
+                </p>
+                <p className="text-lg text-foreground/70 leading-relaxed">
+                  Through continuous experience in delivering marine supplies and integrated logistical solutions, we understand the critical importance of efficiency, precision, and timing in modern maritime operations.
+                </p>
+                <Button asChild variant="outline" className="mt-4">
+                  <Link href="/about">Learn More About Us</Link>
+                </Button>
+              </div>
+              <div className="w-full h-[300px] flex items-center justify-center">
+                <img
+                  src="/ship-image.jpeg"
+                  alt="Ship at sea"
+                  className="h-full w-auto max-w-full object-contain rounded-xl"
+                  onError={(e) => {
+                    console.error('Failed to load image:', e);
+                    const target = e.target as HTMLImageElement;
+                    target.alt = 'Image failed to load';
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+        </AnimatedSection>
+
+        {/* Features Section */}
+        <AnimatedSection
+          className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/20"
+          direction="up"
+        >
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose Express?</h2>
+              <div className="w-20 h-1 bg-accent mx-auto"></div>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {features.map((feature, index) => (
+                <motion.div
+                  key={index}
+                  className="h-full"
+                  initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.6, ease: 'easeOut', delay: index * 0.05 }}
+                >
+                  <Card className="h-full p-6 hover:shadow-lg transition-shadow duration-300 flex flex-col">
+                    <div className="flex flex-col items-center text-center flex-1">
+                      <div className="p-3 bg-accent/10 rounded-full mb-4">
+                        {feature.icon}
+                      </div>
+                      <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+                      <p className="text-foreground/70">{feature.description}</p>
+                    </div>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </AnimatedSection>
+
+        {/* Services Preview */}
+        <AnimatedSection
+          className="py-20 px-4 sm:px-6 lg:px-8 bg-background"
+          direction="up"
+        >
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">What We Serve</h2>
+              <p className="text-foreground/60 max-w-2xl mx-auto">WE PROVIDE ALL THE ESSENTIALS SHIPS NEED QUICKLY, RELIABLY, AND WHENEVER THEY NEED IT.</p>
+              <div className="w-20 h-1 bg-accent mx-auto mt-4"></div>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {services.map((service, index) => (
+                <div
+                  key={index}
+                  className="group cursor-pointer"
+                >
+                  <div className="h-full rounded-xl overflow-hidden border border-border bg-gradient-to-b from-card to-card/95 shadow-sm transition-all duration-300 group-hover:border-accent/60 group-hover:shadow-luxury group-active:border-accent/80 group-active:shadow-luxury">
+                    <div className="relative h-40 sm:h-44 overflow-hidden">
+                      <img
+                        src={service.image}
+                        alt={service.alt}
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent opacity-80 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-300" />
+                    </div>
+                    <div className="p-6">
+                      <h3 className="text-xl font-semibold mb-2 uppercase tracking-wide group-hover:text-accent group-active:text-accent transition-colors">
+                        {service.title}
+                      </h3>
+                      <p className="text-sm text-foreground/70 leading-relaxed group-hover:text-foreground group-active:text-foreground transition-colors">
+                        {service.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="text-center mt-12">
+              <Button size="lg" className="px-8" asChild>
+                <Link href="/services">View All Services</Link>
               </Button>
             </div>
-            <div className="w-full h-[300px] flex items-center justify-center">
-              <img
-                src="/ship-image.jpeg"
-                alt="Ship at sea"
-                className="h-full w-auto max-w-full object-contain rounded-xl"
-                onError={(e) => {
-                  console.error('Failed to load image:', e);
-                  const target = e.target as HTMLImageElement;
-                  target.alt = 'Image failed to load';
-                }}
-              />
-            </div>
           </div>
-        </div>
-      </AnimatedSection>
+        </AnimatedSection>
 
-      {/* Features Section */}
-      <AnimatedSection
-        className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/20"
-        direction="up"
-      >
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose Express?</h2>
-            <div className="w-20 h-1 bg-accent mx-auto"></div>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                className="h-full"
-                initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.6, ease: 'easeOut', delay: index * 0.05 }}
-              >
-                <Card className="h-full p-6 hover:shadow-lg transition-shadow duration-300 flex flex-col">
-                  <div className="flex flex-col items-center text-center flex-1">
-                    <div className="p-3 bg-accent/10 rounded-full mb-4">
-                      {feature.icon}
-                    </div>
-                    <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                    <p className="text-foreground/70">{feature.description}</p>
+        {/* About Section */}
+        <AnimatedSection
+          className="py-20 px-4 sm:px-6 lg:px-8 bg-background"
+          direction="up"
+        >
+          <div className="max-w-7xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div>
+                <div className="inline-flex items-center gap-2 bg-accent/10 text-accent px-4 py-2 rounded-full mb-6">
+                  <Anchor className="w-4 h-4" />
+                  <span className="text-sm font-medium">Our Mission</span>
+                </div>
+                <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Mission</h2>
+                <p className="text-lg text-foreground/80 mb-6">
+                  To provide comprehensive and reliable ship supply services, rooted in efficiency, precision, and commitment, ensuring uninterrupted maritime operations.
+                </p>
+                <p className="text-lg text-foreground/80 mb-6">
+                  We strive to meet our clients' needs for provisions, technical supplies, and logistical support, adhering to the highest standards of quality and safety, through a professional team, an effective supply network, and innovative solutions that keep pace with advancements in the maritime sector.
+                </p>
+                <p className="text-lg text-foreground/80 mb-6">
+                  From supplying provisions and equipment to providing spare parts and technical requirements, we offer integrated and rapid solutions that meet the demands of the modern maritime industry.
+                </p>
+                <div className="grid grid-cols-2 gap-6">
+                  <div>
+                    <h3 className="text-2xl font-bold text-accent mb-2">24/7</h3>
+                    <p className="text-foreground/70">Support</p>
                   </div>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </AnimatedSection>
-
-      {/* Services Preview */}
-      <AnimatedSection
-        className="py-20 px-4 sm:px-6 lg:px-8 bg-background"
-        direction="up"
-      >
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">What We Serve</h2>
-            <p className="text-foreground/60 max-w-2xl mx-auto">WE PROVIDE ALL THE ESSENTIALS SHIPS NEED QUICKLY, RELIABLY, AND WHENEVER THEY NEED IT.</p>
-            <div className="w-20 h-1 bg-accent mx-auto mt-4"></div>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <motion.div
-                key={index}
-                className="group cursor-pointer"
-                initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                whileHover={{ y: -8, scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.3, ease: 'easeOut', delay: index * 0.05 }}
-              >
-                <div className="h-full rounded-xl overflow-hidden border border-border bg-gradient-to-b from-card to-card/95 shadow-sm transition-all duration-300 group-hover:border-accent/60 group-hover:shadow-luxury group-active:border-accent/80 group-active:shadow-luxury">
-                  <div className="relative h-40 sm:h-44 overflow-hidden">
+                  <div>
+                    <h3 className="text-2xl font-bold text-accent mb-2">100%</h3>
+                    <p className="text-foreground/70">Commitment</p>
+                  </div>
+                </div>
+              </div>
+              <div className="relative">
+                <div className="bg-muted rounded-xl aspect-[4/5] w-full md:w-4/5 lg:w-3/4 mx-auto md:ml-auto">
+                  <div className="w-full h-full bg-gradient-to-br from-primary/20 to-accent/10 rounded-xl flex items-center justify-center">
                     <img
-                      src={service.image}
-                      alt={service.alt}
-                      className="w-full h-full object-cover transform group-hover:scale-105 group-active:scale-105 transition-transform duration-500"
+                      src="/our-mission.jpeg"
+                      alt="Our Mission at Damietta Port"
+                      className="w-full h-full object-cover rounded-xl"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent opacity-80 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-300" />
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold mb-2 uppercase tracking-wide group-hover:text-accent group-active:text-accent transition-colors">
-                      {service.title}
-                    </h3>
-                    <p className="text-sm text-foreground/70 leading-relaxed group-hover:text-foreground group-active:text-foreground transition-colors">
-                      {service.description}
-                    </p>
                   </div>
                 </div>
-              </motion.div>
-            ))}
-          </div>
-          
-          <div className="text-center mt-12">
-            <Button size="lg" className="px-8" asChild>
-              <Link href="/services">View All Services</Link>
-            </Button>
-          </div>
-        </div>
-      </AnimatedSection>
-
-      {/* About Section */}
-      <AnimatedSection
-        className="py-20 px-4 sm:px-6 lg:px-8 bg-background"
-        direction="up"
-      >
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <div className="inline-flex items-center gap-2 bg-accent/10 text-accent px-4 py-2 rounded-full mb-6">
-                <Anchor className="w-4 h-4" />
-                <span className="text-sm font-medium">Our Mission</span>
-              </div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Mission</h2>
-              <p className="text-lg text-foreground/80 mb-6">
-                To provide comprehensive and reliable ship supply services, rooted in efficiency, precision, and commitment, ensuring uninterrupted maritime operations.
-              </p>
-              <p className="text-lg text-foreground/80 mb-6">
-                We strive to meet our clients' needs for provisions, technical supplies, and logistical support, adhering to the highest standards of quality and safety, through a professional team, an effective supply network, and innovative solutions that keep pace with advancements in the maritime sector.
-              </p>
-              <p className="text-lg text-foreground/80 mb-6">
-                From supplying provisions and equipment to providing spare parts and technical requirements, we offer integrated and rapid solutions that meet the demands of the modern maritime industry.
-              </p>
-              <div className="grid grid-cols-2 gap-6">
-                <div>
-                  <h3 className="text-2xl font-bold text-accent mb-2">24/7</h3>
-                  <p className="text-foreground/70">Support</p>
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-accent mb-2">100%</h3>
-                  <p className="text-foreground/70">Commitment</p>
-                </div>
+                <motion.div
+                  className="absolute -bottom-20 -right-6 bg-background p-5 rounded-xl shadow-lg border border-border w-3/4"
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                >
+                  <div className="flex items-center gap-2 text-yellow-400 mb-2">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 fill-current" />
+                    ))}
+                  </div>
+                  <p className="font-medium mb-2">Dedicated to excellence in maritime services</p>
+                  <p className="text-sm text-foreground/60">Your trusted partner at sea</p>
+                </motion.div>
               </div>
             </div>
-            <div className="relative">
-              <div className="bg-muted rounded-xl aspect-[4/5] w-full md:w-4/5 lg:w-3/4 mx-auto md:ml-auto">
-                <div className="w-full h-full bg-gradient-to-br from-primary/20 to-accent/10 rounded-xl flex items-center justify-center">
-                  <img
-                    src="/our-mission.jpeg"
-                    alt="Our Mission at Damietta Port"
-                    className="w-full h-full object-cover rounded-xl"
-                  />
-                </div>
-              </div>
-              <motion.div 
-                className="absolute -bottom-20 -right-6 bg-background p-5 rounded-xl shadow-lg border border-border w-3/4"
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-              >
-                <div className="flex items-center gap-2 text-yellow-400 mb-2">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-current" />
-                  ))}
-                </div>
-                <p className="font-medium mb-2">Dedicated to excellence in maritime services</p>
-                <p className="text-sm text-foreground/60">Your trusted partner at sea</p>
-              </motion.div>
+          </div>
+        </AnimatedSection>
+
+        {/* Ports Coverage Section */}
+        <AnimatedSection
+          className="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-slate-950"
+          direction="up"
+        >
+          <div className="absolute inset-0">
+            <img
+              src="/port-image.jpg"
+              alt="Egypt ports background"
+              className="w-full h-full object-cover opacity-40"
+            />
+            <div className="absolute inset-0 bg-black/70" />
+          </div>
+          <div className="relative max-w-7xl mx-auto">
+            <div className="text-center text-white space-y-6 max-w-3xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-bold mb-1">Ports We Serve</h2>
+              <div className="w-20 h-1 bg-accent mx-auto" />
+              <p className="text-base md:text-lg text-white/90 leading-relaxed">
+                Alexandria Port, El Dekheila Port, Damietta Port, Port Said Port, East Port Said Port, Ein El Sokhna Port.
+                <br />
+              </p>
             </div>
           </div>
-        </div>
-      </AnimatedSection>
+        </AnimatedSection>
 
-      {/* Ports Coverage Section */}
-      <AnimatedSection
-        className="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-slate-950"
-        direction="up"
-      >
-        <div className="absolute inset-0">
-          <img
-            src="/port-image.jpg"
-            alt="Egypt ports background"
-            className="w-full h-full object-cover opacity-40"
-          />
-          <div className="absolute inset-0 bg-black/70" />
-        </div>
-        <div className="relative max-w-7xl mx-auto">
-          <div className="text-center text-white space-y-6 max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold mb-1">Ports We Serve</h2>
-            <div className="w-20 h-1 bg-accent mx-auto" />
-            <p className="text-base md:text-lg text-white/90 leading-relaxed">
-              Alexandria Port, El Dekheila Port, Damietta Port, Port Said Port, East Port Said Port, Ein El Sokhna Port.
-              <br />
+        {/* Ports Map Section (under dark band) */}
+        <AnimatedSection
+          className="pt-4 pb-20 px-4 sm:px-6 lg:px-8 bg-background"
+          direction="up"
+        >
+          <div className="max-w-7xl mx-auto">
+            <PortsMap />
+          </div>
+        </AnimatedSection>
+
+        {/* CTA Section */}
+        <AnimatedSection
+          className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-primary/90 to-primary"
+          direction="up"
+        >
+          <div className="max-w-4xl mx-auto text-center text-white">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Experience Excellence in Maritime Services?</h2>
+            <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto">
+              Join the many maritime professionals who trust Express for their vessel supply and support needs in Damietta Port.
             </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button
+                size="lg"
+                variant="outline"
+                className="px-8 bg-[#f58d13] hover:bg-[#e67e00] text-white border-0 hover:border-0 shadow-md hover:shadow-lg"
+                asChild
+              >
+                <Link href="/contact">Get a Quote</Link>
+              </Button>
+              <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10" asChild>
+                <Link href="tel:+201016218082">Call Us Now</Link>
+              </Button>
+            </div>
           </div>
-        </div>
-      </AnimatedSection>
+        </AnimatedSection>
 
-      {/* Ports Map Section (under dark band) */}
-      <AnimatedSection
-        className="pt-4 pb-20 px-4 sm:px-6 lg:px-8 bg-background"
-        direction="up"
-      >
-        <div className="max-w-7xl mx-auto">
-          <PortsMap />
-        </div>
-      </AnimatedSection>
-
-      {/* CTA Section */}
-      <AnimatedSection
-        className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-primary/90 to-primary"
-        direction="up"
-      >
-        <div className="max-w-4xl mx-auto text-center text-white">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Experience Excellence in Maritime Services?</h2>
-          <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto">
-            Join the many maritime professionals who trust Express for their vessel supply and support needs in Damietta Port.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              size="lg"
-              variant="outline"
-              className="px-8 bg-[#f58d13] hover:bg-[#e67e00] text-white border-0 hover:border-0 shadow-md hover:shadow-lg"
-              asChild
-            >
-              <Link href="/contact">Get a Quote</Link>
-            </Button>
-            <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10" asChild>
-              <Link href="tel:+201016218082">Call Us Now</Link>
-            </Button>
-          </div>
-        </div>
-      </AnimatedSection>
-      
-      <Footer />
+        <Footer />
       </main>
     </div>
   )
