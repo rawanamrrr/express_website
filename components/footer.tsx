@@ -143,7 +143,7 @@ export default function Footer({ onNavigate }: FooterProps) {
             <div className="h-0.5 w-10 bg-accent mb-6 mt-2" />
             <div className="space-y-6">
               <ul className="space-y-4 text-sm text-primary-foreground/80">
-                <li className="flex items-center gap-3 group">
+                <li className="hidden items-center gap-3 group">
                   <div className="w-8 h-8 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center group-hover:bg-gray-200 dark:group-hover:bg-gray-700 transition-colors">
                     <MapPin className="w-4 h-4 text-accent" />
                   </div>

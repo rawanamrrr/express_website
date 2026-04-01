@@ -41,14 +41,14 @@ export default function Contact({ onNavigate }: ContactProps) {
   }
 
   const contactInfo = [
-    {
-      icon: MapPin,
-      label: 'Location',
-      value: 'DAMIETTA PORT, EGYPT',
-      href: 'https://maps.app.goo.gl/pFRY1wxe52LzyPgE8',
-      target: '_blank',
-      rel: 'noopener noreferrer'
-    },
+    // {
+    //   icon: MapPin,
+    //   label: 'Location',
+    //   value: 'DAMIETTA PORT, EGYPT',
+    //   href: 'https://maps.app.goo.gl/pFRY1wxe52LzyPgE8',
+    //   target: '_blank',
+    //   rel: 'noopener noreferrer'
+    // },
     {
       icon: Mail,
       label: 'Email',
@@ -286,7 +286,7 @@ export default function Contact({ onNavigate }: ContactProps) {
         </div>
 
         {/* Map Section */}
-        <div className="mt-16">
+        <div className="mt-16 hidden">
           <h2 className="text-3xl font-bold text-center mb-6">Our Location</h2>
           <div className="max-w-3xl mx-auto">
             <Map />
